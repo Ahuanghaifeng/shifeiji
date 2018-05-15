@@ -28,8 +28,19 @@
         android:layout_width="match_parent"
         android:layout_height="40dp" />
 
+    <EditText
+        android:id="@+id/et_code"
+        android:gravity="center"
+        android:hint="注册码"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:background="@drawable/shape_login_bg"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
     <Button
-        android:id="@+id/bt_login"
+        android:id="@+id/bt_register"
         android:textSize="20sp"
         android:textColor="@color/white"
         android:paddingLeft="90dp"
@@ -37,16 +48,7 @@
         android:background="@drawable/button_bg"
         android:layout_marginTop="60dp"
         android:layout_gravity="center"
-        android:text="登录"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:textSize="16sp"
-        android:id="@+id/tv_register"
-        android:layout_marginTop="15dp"
         android:text="立即注册"
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

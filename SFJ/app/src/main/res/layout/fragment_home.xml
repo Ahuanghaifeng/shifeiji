@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.sfj.sfj.widget.NoScrollViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        />
+
+    <com.roughike.bottombar.BottomBar
+        android:id="@+id/bottomBar"
+        app:bb_activeTabColor="#3F51B5"
+        app:bb_badgesHideWhenActive="false"
+        app:bb_inActiveTabColor="#333333"
+        app:bb_tabXmlResource="@xml/bottombar_tabs"
+        app:bb_showShadow="true"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_gravity="bottom" />
+</FrameLayout>

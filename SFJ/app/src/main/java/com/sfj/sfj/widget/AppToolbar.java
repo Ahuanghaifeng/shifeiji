@@ -139,7 +139,7 @@ public class AppToolbar extends RelativeLayout {
         if (isVertical) {
             ViewGroup content = (ViewGroup) getParent();
             LayoutParams rlp = (LayoutParams) content.getChildAt(0).getLayoutParams();
-//            rlp.addRule(RelativeLayout.BELOW, R.id.title_id);
+            rlp.addRule(RelativeLayout.BELOW, R.id.title_id);
             content.getChildAt(0).setLayoutParams(rlp);
 //            if(content.getChildAt(1)!=null&&content.getChildAt(1) instanceof EmptyLayout){
 //                content.getChildAt(1).setLayoutParams(rlp);
@@ -150,7 +150,7 @@ public class AppToolbar extends RelativeLayout {
             background.setAlpha(0);
             ViewGroup content = (ViewGroup) getParent();
             LayoutParams rlp = (LayoutParams) content.getChildAt(0).getLayoutParams();
-//            rlp.removeRule(RelativeLayout.BELOW);
+            rlp.removeRule(RelativeLayout.BELOW);
 //            if(content.getChildAt(1)!=null&&content.getChildAt(1) instanceof EmptyLayout){
 //                LayoutParams rlp2 = (LayoutParams) content.getChildAt(1).getLayoutParams();
 //                rlp2.removeRule(RelativeLayout.BELOW);
