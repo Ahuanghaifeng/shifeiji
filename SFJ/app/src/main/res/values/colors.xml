@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="red">#FF0000</color>
+    <color name="white">#ffffff</color>
+    <color name="color_333333">#333333</color>
+    <color name="color_8aa5ff">#8aa5ff</color>
+    <color name="line">#ececec</color>
+    <color name="color_ffffff">#ffffff</color>
+    <color name="line_gray">#eeeeee</color>
+    <color name="green">#4ed59f</color>
+    <color name="modify_money">#467cd4</color>
+    <color name="color_0995ff">#0995ff</color>
+    <color name="color_0a94ff">#0a94ff</color>
+    <color name="color_f5f5f5">#f5f5f5</color>
+    <color name="color_bcbcbc">#bcbcbc</color>
+    <color name="color_f17776">#f17776</color>
+    <color name="color_a5d3fc">#a5d3fc</color>
+    <color name="black">#000</color>
+    <color name="color_585858">#585858</color>
+    <color name="color_5a4f6f">#5a4f6f</color>
+    <color name="color_7894e7">#7894e7</color>
+    <color name="color_a9a9a9">#a9a9a9</color>
+    <color name="transluent">#0000</color>
+    <color name="color_FFB358">#FFB358</color>
+    <color name="color_F1F1F1">#F1F1F1</color>
+    <color name="update_version">#4ea8ed</color>
+    <color name="system_message_bg">#ecedf1</color>
+    <color name="color_446abd">#446abd</color>
+    <color name="color_aaffffff">#aaffffff</color>
+    <color name="color_fff2b5">#fff2b5</color>
+    <color name="color_e1b063">#e1b063</color>
+    <color name="color_eaebef">#eaebef</color>
+    <color name="color_cae0fe">#cae0fe</color>
+</resources>
