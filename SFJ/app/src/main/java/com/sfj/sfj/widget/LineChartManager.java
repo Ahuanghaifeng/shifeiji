@@ -2,6 +2,7 @@ package com.sfj.sfj.widget;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.LimitLine;
@@ -10,6 +11,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.util.ArrayList;
@@ -56,9 +58,19 @@ public class LineChartManager {
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setAxisMinimum(0f);
         xAxis.setGranularity(1f);
+        xAxis.setValueFormatter(xValueFormatter);// x轴显示格式
+
         //保证Y轴从0开始，不然会上移一点
         leftAxis.setAxisMinimum(0f);
         rightAxis.setAxisMinimum(0f);
+
+        lineChart.setTouchEnabled(true);
+        //设置是否可以拖拽，缩放
+        lineChart.setDragEnabled(true);
+        lineChart.setScaleEnabled(true);
+        //设置是否能扩大扩小
+        lineChart.setPinchZoom(true);
+        lineChart.zoom(2.5f,1f,0,0);
 
     }
 
@@ -109,7 +121,7 @@ public class LineChartManager {
         dataSets.add(lineDataSet);
         LineData data = new LineData(dataSets);
         //设置X轴的刻度数
-        xAxis.setLabelCount(xAxisValues.size(), true);
+        xAxis.setLabelCount(xAxisValues.size(), false);
         lineChart.setData(data);
     }
 
@@ -225,4 +237,11 @@ public class LineChartManager {
         lineChart.setDescription(description);
         lineChart.invalidate();
     }
+
+    public IAxisValueFormatter xValueFormatter = new IAxisValueFormatter() {
+        @Override
+        public String getFormattedValue(float value, AxisBase axis) { //value是横轴
+            return "17:34";
+        }
+    };
 }

@@ -61,6 +61,7 @@ public class CurveFragment extends BaseDetailFragment {
         lineChartManager1.setYAxis(50, 0, 11);
 
         mSwipeRefreshLayout.setRefreshing(false);
+        mSwipeRefreshLayout.setEnabled(false);
         mEmptyLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
     }
 
