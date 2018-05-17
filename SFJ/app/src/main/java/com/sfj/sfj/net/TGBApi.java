@@ -1,6 +1,12 @@
 package com.sfj.sfj.net;
 
 
+import com.sfj.sfj.net.service.LoginService;
+import com.sfj.sfj.net.service.UserConfigService;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class TGBApi {
 
 
@@ -23,5 +29,14 @@ public class TGBApi {
 //                postData(action, postData), handler);
 //
 //    }
+
+    public static void doRegister(String username,String password,String registerCode,CloudSDKHttpHandler handler){
+        Map<String,String> postData = new HashMap<>();
+        postData.put("username",username);
+        postData.put("password",password);
+        postData.put("registerCode",registerCode);
+        BaseApiHelper.getInstance().callEnqueue(BaseApiHelper.getInstance().getApiServer(ApiServiceBean.PAY_DOMAIN_KEY, LoginService.class).
+                postData("userController/register.do", postData), handler);
+    }
 
 }

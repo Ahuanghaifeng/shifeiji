@@ -26,7 +26,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.MainActivity"></activity>
+        <activity android:name=".ui.MainActivity"
+            android:configChanges="keyboardHidden|orientation"></activity>
 
         <activity android:name=".ui.RegisterActivity"></activity>
 

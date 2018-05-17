@@ -45,6 +45,7 @@ public class CommentCardLayout extends RelativeLayout implements OnChartValueSel
         mBarChat = (HorizontalBarChart) view.findViewById(R.id.mHorizontalBarChart);
         mHeadImage = (ImageView) view.findViewById(R.id.iv_head);
         addView(view);
+        setHorizontalBarChart();
     }
 
     public void setHorizontalBarChart(){
@@ -60,13 +61,18 @@ public class CommentCardLayout extends RelativeLayout implements OnChartValueSel
         //x轴
         XAxis xl = mBarChat.getXAxis();
         xl.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xl.setDrawAxisLine(false); //不显示x轴
+        xl.setDrawAxisLine(true); //不显示x轴
         xl.setDrawGridLines(false); //不绘制网格
-        xl.setGranularity(1f); //最小间隔
         xl.setEnabled(false);
         mBarChat.getAxisRight().setEnabled(false);
         mBarChat.setFitBars(true);
         mBarChat.animateY(2000);
+
+        YAxis y1 = mBarChat.getAxisLeft();
+        y1.setAxisMinimum(0f);//设置x轴的最小值
+        y1.setAxisMaximum(100f);//设置最大值
+        y1.setGranularity(10f); //最小间隔
+        y1.setLabelCount(10);  //设置X轴的显示个数
 
         Legend l = mBarChat.getLegend();
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);

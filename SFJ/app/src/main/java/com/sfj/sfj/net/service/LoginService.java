@@ -20,10 +20,10 @@ import retrofit2.http.Query;
 public interface LoginService {
 
     @FormUrlEncoded
-    @POST("do.aspx?")
+    @POST("{action}")
     Call<ResponseBody>
     postData(
-            @Query("action") String action,
+            @Path("action") String action,
             @FieldMap Map<String, String> map
     );
 

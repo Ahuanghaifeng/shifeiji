@@ -21,7 +21,7 @@ public class ApiServiceItem {
     /**
      * 当前默认环境
      */
-    public int currentType = LINE;
+    public int currentType = DEV;
     private int mPlatform;
 
     public static ApiServiceItem getInstance() {
@@ -57,7 +57,7 @@ public class ApiServiceItem {
 
     private DomainBean getDevDomainBean() {
         DomainBean devDomainBean = new DomainBean();
-        devDomainBean.setPay("https://promotersapi.91y.com/");
+        devDomainBean.setPay("http://121.42.202.87:8080/");
 //        devDomainBean.setUserInfo("http://phone.91y.com/");//
 //        devDomainBean.setUserCenter("http://phone.91y.com/center.aspx");//
 //        devDomainBean.setServerCenter("http://phone.91y.com/callcenter.aspx");//
@@ -74,7 +74,7 @@ public class ApiServiceItem {
      */
     private DomainBean getTestDomainBean() {
         DomainBean devDomainBean = new DomainBean();
-        devDomainBean.setPay("https://testpromotersapi.91y.com/");
+        devDomainBean.setPay("http://121.42.202.87:8080/");
 //        devDomainBean.setUserInfo("http://phonetest.91y.com/");//
 //        devDomainBean.setUserCenter("http://phonetest.91y.com/center.aspx");//
 //        devDomainBean.setServerCenter("http://phonetest.91y.com/callcenter.aspx");//
