@@ -20,7 +20,7 @@ import retrofit2.http.Query;
 public interface LoginService {
 
     @FormUrlEncoded
-    @POST("{action}")
+    @POST("userController/{action}")
     Call<ResponseBody>
     postData(
             @Path("action") String action,

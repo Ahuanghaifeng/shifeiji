@@ -10,6 +10,7 @@ public class MachineFragment extends BaseDetailFragment {
 
     public static MachineFragment newInstance() {
         Bundle args = new Bundle();
+        args.putString(BUNDLE_KEY_FRAGMENT_TITLE,"施肥机");
         MachineFragment fragment = new MachineFragment();
         fragment.setArguments(args);
         return fragment;

@@ -36,7 +36,14 @@ public class TGBApi {
         postData.put("password",password);
         postData.put("registerCode",registerCode);
         BaseApiHelper.getInstance().callEnqueue(BaseApiHelper.getInstance().getApiServer(ApiServiceBean.PAY_DOMAIN_KEY, LoginService.class).
-                postData("userController/register.do", postData), handler);
+                postData("register.do",postData), handler);
     }
 
+    public static void doLogin(String username,String password,CloudSDKHttpHandler handler){
+        Map<String,String> postData = new HashMap<>();
+        postData.put("username",username);
+        postData.put("password",password);
+        BaseApiHelper.getInstance().callEnqueue(BaseApiHelper.getInstance().getApiServer(ApiServiceBean.PAY_DOMAIN_KEY, LoginService.class).
+                postData("appLogin.do",postData), handler);
+    }
 }

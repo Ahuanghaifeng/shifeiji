@@ -32,7 +32,7 @@ public class CloudSDKHttpHandler extends Callback<Response>{
      */
     public void onResponse(String mjson, int id, Response mResponse) {
         mResponse.headers();
-        if (BuildConfig.DEBUG){
+//        if (BuildConfig.DEBUG){
             Request request = mResponse.request();
             String msg = "%s\nurl->" + request.url()
                     + "\nheaders->" + request.headers()
@@ -40,34 +40,12 @@ public class CloudSDKHttpHandler extends Callback<Response>{
                     + "\nresponse headers->" + mResponse.headers()
                     + "\nbody->" + mjson;
             Logger.i(msg);
-        }
+//        }
         callbackHandler(mjson, id);
     }
 
     private void callbackHandler(String mjson, int id){
         try {
-            //mjson = JsonUtil.ConvertStream2Json(new ByteArrayInputStream(responseBody));
-//            if (BuildConfig.DEBUG) {
-//                TLog.i("response: " + response);
-//            }
-
-//            mApiBean = JSON.parseObject(response, ApiBean.class);
-//            if (mApiBean.getIsSecret()) {
-//                mApiBean.setData(EncrypAES.AesDecrypt(AppContext.getInstance().getApi().getResKey(), mApiBean.getData()));
-//                response = JSON.toJSONString(mApiBean);
-//            }
-//            Log.i("app","response: " + response);
-//            if (ApiBean.TOKEN_LOSE.equals(mApiBean.getCode())) {
-//                TDevice.infoToSD("接口返回002:" + response);
-//                Intent intent = new Intent(AppContext.getInstance(), CustomActionBarBackActivity.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                intent.putExtra(CustomActionBarBackActivity.BUNDLE_KEY_PAGE, SimpleBackPage.USER_LOGIN.getValue());
-//                intent.putExtra(CustomActionBarBackActivity.BUNDLE_KEY_DISPLAY_TYPE,
-//                        CustomActionBarBackActivity.DISPLAY_DEFAULT_METHOD_NAME);
-//                AppContext.getInstance().startActivity(intent);
-//                AppContext.getInstance().LoginOut();
-//                return;
-//            }
             if (null != mHttpHandler)
                 mHttpHandler.onSuccess(id, mjson);
         } catch (Exception ex) {

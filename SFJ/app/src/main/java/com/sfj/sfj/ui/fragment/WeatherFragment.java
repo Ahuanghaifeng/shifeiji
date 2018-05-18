@@ -102,16 +102,6 @@ public class WeatherFragment extends BaseDetailFragment {
     @Override
     protected void sendRequestData() {
         super.sendRequestData();
-        TGBApi.doRegister("hhf","H9009910480","123",new CloudSDKHttpHandler(new ICloudSDKHttpHandler() {
-            @Override
-            public void onSuccess(int statusCode, String mjson) {
-                Log.i("aaaaaaaaaa",mjson);
-            }
 
-            @Override
-            public void onFailure(int statusCode, String responseBody, Throwable error) {
-
-            }
-        }));
     }
 }

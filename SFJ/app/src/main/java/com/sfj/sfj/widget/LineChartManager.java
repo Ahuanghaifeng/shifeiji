@@ -1,5 +1,8 @@
 package com.sfj.sfj.widget;
 
+import android.text.LoginFilter;
+import android.util.Log;
+
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -241,7 +244,7 @@ public class LineChartManager {
     public IAxisValueFormatter xValueFormatter = new IAxisValueFormatter() {
         @Override
         public String getFormattedValue(float value, AxisBase axis) { //value是横轴
-            return "17:34";
+            return "17:3"+(int)value;
         }
     };
 }
