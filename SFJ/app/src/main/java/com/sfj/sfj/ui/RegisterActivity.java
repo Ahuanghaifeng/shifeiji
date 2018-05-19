@@ -74,7 +74,7 @@ public class RegisterActivity extends BaseDetailActivity {
 
                     @Override
                     public void onFailure(int statusCode, String responseBody, Throwable error) {
-
+                        ToastUtils.showShortToast(R.string.error_view_network);
                     }
                 }));
             }

@@ -16,11 +16,11 @@ public class SplashActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (AppInfoManager.getInstance().isLogin()){
+//        if (AppInfoManager.getInstance().isLogin()){
             startMain();
-        }else{
-            startLogin();
-        }
+//        }else{
+//            startLogin();
+//        }
     }
 
     public void startMain(){

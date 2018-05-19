@@ -2,6 +2,7 @@
     <string name="app_name">施肥机</string>
     <string name="error_view_load_error_click_to_refresh">内容加载失败\r\n点击重新加载</string>
     <string name="error_view_network_error_click_to_refresh">没有可用的网络</string>
+    <string name="error_view_network">网络错误或服务器地址不可达</string>
     <string name="error_view_no_data">暂无内容</string>
     <string name="error_view_loading">加载中…</string>
     <item name="BaseQuickAdapter_databinding_support" type="id"/>
