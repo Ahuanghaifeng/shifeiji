@@ -77,7 +77,7 @@ public class ApiHttpClient {
                     .addInterceptor(ApiHttpClient.getInterceptor())
                     .addInterceptor(mTokenInterceptor)
                     .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)
-                    .cookieJar(CookiesManager.getInstance())
+//                    .cookieJar(CookiesManager.getInstance())
                     .hostnameVerifier(new HostnameVerifier() {
                         @Override
                         public boolean verify(String hostname, SSLSession session) {

@@ -6,15 +6,39 @@ android {
     defaultConfig {
         applicationId "com.sfj.sfj"
         minSdkVersion 17
-        targetSdkVersion 22
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        release {
+            storeFile file('huanghaifeng.jks')
+            storePassword 'H9009910480'
+            keyAlias 'haifeng'
+            keyPassword 'H9009910480'
+            v2SigningEnabled false
+        }
+
+        debug{
+            storeFile file('huanghaifeng.jks')
+            storePassword 'H9009910480'
+            keyAlias 'haifeng'
+            keyPassword 'H9009910480'
+            v2SigningEnabled false
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.debug
         }
     }
 }
