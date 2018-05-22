@@ -77,9 +77,11 @@ public class LoginActivity extends BaseDetailActivity{
             ToastUtils.showShortToast("密码不能为空");
             return;
         }
+        showWaitDialog("登陆中，请稍后...");
         TGBApi.doLogin(name,pw,new CloudSDKHttpHandler(new ICloudSDKHttpHandler() {
             @Override
             public void onSuccess(int statusCode, String mjson) {
+                hideWaitDialog();
                 ApiBean apiBean = JSON.parseObject(mjson,ApiBean.class);
                 if ("200".equals(apiBean.getCode())){
                     AppInfoManager.getInstance().setLogin(true);
@@ -98,6 +100,7 @@ public class LoginActivity extends BaseDetailActivity{
             @Override
             public void onFailure(int statusCode, String responseBody, Throwable error) {
                 ToastUtils.showShortToast(R.string.error_view_network);
+                hideWaitDialog();
             }
         }));
     }

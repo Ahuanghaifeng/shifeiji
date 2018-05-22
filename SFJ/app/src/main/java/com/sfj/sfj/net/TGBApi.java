@@ -1,6 +1,9 @@
 package com.sfj.sfj.net;
 
 
+import android.text.TextUtils;
+
+import com.sfj.sfj.net.service.FertilizerService;
 import com.sfj.sfj.net.service.LoginService;
 import com.sfj.sfj.net.service.UserConfigService;
 
@@ -45,5 +48,16 @@ public class TGBApi {
         postData.put("password",password);
         BaseApiHelper.getInstance().callEnqueue(BaseApiHelper.getInstance().getApiServer(ApiServiceBean.PAY_DOMAIN_KEY, LoginService.class).
                 postData("appLogin.do",postData), handler);
+    }
+
+    public static void doFertilizerInfo(String username,String password,String fertilizerId,CloudSDKHttpHandler handler){
+        Map<String,String> postData = new HashMap<>();
+        postData.put("username",username);
+        postData.put("password",password);
+        if (!TextUtils.isEmpty(fertilizerId)){
+            postData.put("fertilizerId",fertilizerId);
+        }
+        BaseApiHelper.getInstance().callEnqueue(BaseApiHelper.getInstance().getApiServer(ApiServiceBean.PAY_DOMAIN_KEY, FertilizerService.class).
+                postData("appTimeData.do",postData), handler);
     }
 }

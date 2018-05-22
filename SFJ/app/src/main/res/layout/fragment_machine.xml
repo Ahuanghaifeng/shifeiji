@@ -26,14 +26,15 @@
 
 
         <TextView
+            android:textColor="@color/white"
             android:id="@+id/tv_state"
-            android:layout_marginRight="5dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
+            android:layout_marginRight="20dp"
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:textSize="18sp"
-            android:text="离线"
+            android:text="在线"
             android:layout_gravity="right|center_vertical"
             android:background="@drawable/button_bg"
             android:layout_width="wrap_content"
@@ -41,44 +42,316 @@
 
     </android.support.v7.widget.CardView>
 
-    <com.sfj.sfj.widget.CommentCardLayoutSHJ
-        android:id="@+id/sfj_ec"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    </com.sfj.sfj.widget.CommentCardLayoutSHJ>
 
-    <com.sfj.sfj.widget.CommentCardLayoutSHJ
-        android:layout_marginTop="5dp"
-        android:id="@+id/sfj_ph"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </com.sfj.sfj.widget.CommentCardLayoutSHJ>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
 
-    <com.sfj.sfj.widget.CommentCardLayoutSHJ
-        android:layout_marginTop="5dp"
-        android:id="@+id/sfj_ssll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </com.sfj.sfj.widget.CommentCardLayoutSHJ>
+            <RelativeLayout
+                android:layout_centerInParent="true"
+                android:background="@mipmap/icon_circle"
+                android:layout_width="130dp"
+                android:layout_height="130dp">
 
-    <com.sfj.sfj.widget.CommentCardLayoutSHJ
-        android:layout_marginTop="5dp"
-        android:id="@+id/sfj_ljll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </com.sfj.sfj.widget.CommentCardLayoutSHJ>
+                <TextView
+                    android:textSize="18sp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/white"
+                    android:text="Ec"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-    <com.sfj.sfj.widget.CommentCardLayoutSHJ
-        android:layout_marginTop="5dp"
-        android:id="@+id/sfj_kpa"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </com.sfj.sfj.widget.CommentCardLayoutSHJ>
+                <TextView
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:id="@+id/tv_ec_data"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-    <com.sfj.sfj.widget.CommentCardLayoutSHJ
-        android:layout_marginTop="5dp"
-        android:id="@+id/sfj_yw"
+                <TextView
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:text="us/cm"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_centerInParent="true"
+                android:background="@mipmap/icon_circle"
+                android:layout_width="130dp"
+                android:layout_height="130dp">
+
+                <TextView
+                    android:textSize="18sp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/white"
+                    android:text="PH"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:id="@+id/tv_ph_data"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:text="PH"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    </com.sfj.sfj.widget.CommentCardLayoutSHJ>
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_centerInParent="true"
+                android:background="@mipmap/icon_circle"
+                android:layout_width="130dp"
+                android:layout_height="130dp">
+
+                <TextView
+                    android:textSize="16sp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/white"
+                    android:text="实时流量"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:id="@+id/tv_ssll_data"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:text="m³/h"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_centerInParent="true"
+                android:background="@mipmap/icon_circle"
+                android:layout_width="130dp"
+                android:layout_height="130dp">
+
+                <TextView
+                    android:textSize="16sp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/white"
+                    android:text="累积流量"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:id="@+id/tv_ljll_data"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:text="m³/h"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_centerInParent="true"
+                android:background="@mipmap/icon_circle"
+                android:layout_width="130dp"
+                android:layout_height="130dp">
+
+                <TextView
+                    android:textSize="16sp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/white"
+                    android:text="管道压力"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:id="@+id/tv_gdyl_data"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:text="kpa"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_centerInParent="true"
+                android:background="@mipmap/icon_circle"
+                android:layout_width="130dp"
+                android:layout_height="130dp">
+
+                <TextView
+                    android:textSize="16sp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/white"
+                    android:text="液位"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:id="@+id/tv_yw_data"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:text="mm"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+    <!--<com.sfj.sfj.widget.CommentCardLayoutSHJ-->
+        <!--android:id="@+id/sfj_ec"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+    <!--</com.sfj.sfj.widget.CommentCardLayoutSHJ>-->
+
+    <!--<com.sfj.sfj.widget.CommentCardLayoutSHJ-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:id="@+id/sfj_ph"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+    <!--</com.sfj.sfj.widget.CommentCardLayoutSHJ>-->
+
+    <!--<com.sfj.sfj.widget.CommentCardLayoutSHJ-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:id="@+id/sfj_ssll"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+    <!--</com.sfj.sfj.widget.CommentCardLayoutSHJ>-->
+
+    <!--<com.sfj.sfj.widget.CommentCardLayoutSHJ-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:id="@+id/sfj_ljll"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+    <!--</com.sfj.sfj.widget.CommentCardLayoutSHJ>-->
+
+    <!--<com.sfj.sfj.widget.CommentCardLayoutSHJ-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:id="@+id/sfj_kpa"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+    <!--</com.sfj.sfj.widget.CommentCardLayoutSHJ>-->
+
+    <!--<com.sfj.sfj.widget.CommentCardLayoutSHJ-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:id="@+id/sfj_yw"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+    <!--</com.sfj.sfj.widget.CommentCardLayoutSHJ>-->
 </LinearLayout>

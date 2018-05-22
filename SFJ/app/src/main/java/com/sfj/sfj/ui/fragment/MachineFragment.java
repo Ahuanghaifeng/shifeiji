@@ -6,8 +6,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.sfj.sfj.R;
+import com.sfj.sfj.base.AppInfoManager;
 import com.sfj.sfj.base.BaseDetailFragment;
+import com.sfj.sfj.bean.ApiBean;
+import com.sfj.sfj.bean.Sfj_Bean;
+import com.sfj.sfj.net.CloudSDKHttpHandler;
+import com.sfj.sfj.net.ICloudSDKHttpHandler;
+import com.sfj.sfj.net.TGBApi;
+import com.sfj.sfj.utils.ToastUtils;
 import com.sfj.sfj.widget.AppToolbar;
 import com.sfj.sfj.widget.CommentCardLayoutSHJ;
 import com.sfj.sfj.widget.EmptyLayout;
@@ -16,7 +24,7 @@ import com.sfj.sfj.widget.SwitchGameDialog;
 public class MachineFragment extends BaseDetailFragment {
 
     SwitchGameDialog gameDialog;
-    private CommentCardLayoutSHJ mEc,mPh,mSsLl,mLjLl,mKpa,mYw;
+    private TextView ecData,phData,shllData,ljllData,gdylData,ywData;
 
     public static MachineFragment newInstance() {
         Bundle args = new Bundle();
@@ -68,23 +76,12 @@ public class MachineFragment extends BaseDetailFragment {
     @Override
     protected void initView(View view) {
         super.initView(view);
-        mEc = (CommentCardLayoutSHJ) view.findViewById(R.id.sfj_ec);
-        mEc.setData(30,"ec-us/cm");
-
-        mPh = (CommentCardLayoutSHJ) view.findViewById(R.id.sfj_ph);
-        mPh.setData(7.9f,"ph");
-
-        mSsLl = (CommentCardLayoutSHJ) view.findViewById(R.id.sfj_ssll);
-        mSsLl.setData(30,"实时流量-m³/h");
-
-        mLjLl = (CommentCardLayoutSHJ) view.findViewById(R.id.sfj_ljll);
-        mLjLl.setData(90,"累积流量-m³/h");
-
-        mKpa = (CommentCardLayoutSHJ) view.findViewById(R.id.sfj_kpa);
-        mKpa.setData(70,"管道压力-kpa");
-
-        mYw = (CommentCardLayoutSHJ) view.findViewById(R.id.sfj_yw);
-        mYw.setData(40,"液位-mm");
+        ecData = (TextView) view.findViewById(R.id.tv_ec_data);
+        phData = (TextView) view.findViewById(R.id.tv_ph_data);
+        shllData = (TextView) view.findViewById(R.id.tv_ssll_data);
+        ljllData = (TextView) view.findViewById(R.id.sfj_ljll);
+        gdylData = (TextView) view.findViewById(R.id.tv_gdyl_data);
+        ywData = (TextView) view.findViewById(R.id.tv_yw_data);
     }
 
     @Override
@@ -95,7 +92,40 @@ public class MachineFragment extends BaseDetailFragment {
     }
 
     @Override
+    protected void sendRequestData() {
+        super.sendRequestData();
+        String username = AppInfoManager.getInstance().getUserInfo().getUsername();
+        String password = AppInfoManager.getInstance().getUserInfo().getPassword();
+        TGBApi.doFertilizerInfo(username,password,"",new CloudSDKHttpHandler(new ICloudSDKHttpHandler() {
+            @Override
+            public void onSuccess(int statusCode, String mjson) {
+                ApiBean bean = JSON.parseObject(mjson,ApiBean.class);
+                if (bean!=null&&"200".equals(bean.getCode())){
+                    Sfj_Bean sfjData = JSON.parseObject(bean.getData(),Sfj_Bean.class);
+                    refreshUi(sfjData);
+                }else{
+                    ToastUtils.showShortToast(bean.getMsg());
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, String responseBody, Throwable error) {
+                ToastUtils.showShortToast(R.string.error_view_network);
+            }
+        }));
+    }
+
+    @Override
     protected int getDetailLayoutId() {
         return R.layout.fragment_machine;
+    }
+
+    public void refreshUi(Sfj_Bean bean){
+        ecData.setText(bean.getTimeData().getEc());
+        phData.setText(bean.getTimeData().getPh());
+        shllData.setText(String.valueOf(bean.getTimeData().getRateFlow()));
+        ljllData.setText(String.valueOf(bean.getTimeData().getTotalIrrigation()));
+        gdylData.setText(bean.getTimeData().getPipePressure());
+        ywData.setText(bean.getTimeData().getLiquidLevel());
     }
 }

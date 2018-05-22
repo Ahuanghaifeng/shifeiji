@@ -21,32 +21,11 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:padding="5dp"
-                android:text="程序1"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/tv_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:padding="5dp"
-                android:text="程序2"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/tv_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:padding="5dp"
-                android:text="程序3"
-                android:textSize="18sp" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_cx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </android.support.v7.widget.RecyclerView>
 
         </LinearLayout>
 
@@ -63,6 +42,7 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/tv_ggsg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -71,6 +51,7 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/tv_jssg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -92,6 +73,7 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/tv_js1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -100,6 +82,7 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/tv_js2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"

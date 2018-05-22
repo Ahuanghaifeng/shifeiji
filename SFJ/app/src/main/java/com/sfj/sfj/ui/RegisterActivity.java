@@ -60,9 +60,11 @@ public class RegisterActivity extends BaseDetailActivity {
                     ToastUtils.showShortToast("注册码不能为空");
                     return;
                 }
+                showWaitDialog("请稍后...");
                 TGBApi.doRegister(name,pw,co,new CloudSDKHttpHandler(new ICloudSDKHttpHandler() {
                     @Override
                     public void onSuccess(int statusCode, String mjson) {
+                        hideWaitDialog();
                         ApiBean mApiBean = JSON.parseObject(mjson,ApiBean.class);
                         if ("200".equals(mApiBean.getCode())){
                             ToastUtils.showShortToast("注册成功,请登录");
@@ -74,6 +76,7 @@ public class RegisterActivity extends BaseDetailActivity {
 
                     @Override
                     public void onFailure(int statusCode, String responseBody, Throwable error) {
+                        hideWaitDialog();
                         ToastUtils.showShortToast(R.string.error_view_network);
                     }
                 }));

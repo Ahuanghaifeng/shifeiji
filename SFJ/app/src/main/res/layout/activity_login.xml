@@ -7,6 +7,7 @@
     <include layout="@layout/layout_title"></include>
 
     <EditText
+        android:textColorHint="@color/color_bcbcbc"
         android:id="@+id/et_account"
         android:gravity="center"
         android:hint="账号"
@@ -18,6 +19,7 @@
         android:layout_height="40dp" />
 
     <EditText
+        android:textColorHint="@color/color_bcbcbc"
         android:id="@+id/et_password"
         android:gravity="center"
         android:hint="密码"
