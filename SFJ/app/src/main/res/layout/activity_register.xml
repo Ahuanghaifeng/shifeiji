@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:background="@mipmap/login_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <include layout="@layout/layout_title"></include>
 
     <EditText
-        android:textColorHint="@color/color_bcbcbc"
+        android:textColorHint="@color/black"
         android:id="@+id/et_account"
         android:gravity="center"
-        android:hint="账号"
+        android:hint="账     号"
         android:layout_marginTop="100dp"
         android:layout_marginRight="40dp"
         android:layout_marginLeft="40dp"
@@ -19,10 +20,10 @@
         android:layout_height="40dp" />
 
     <EditText
-        android:textColorHint="@color/color_bcbcbc"
+        android:textColorHint="@color/black"
         android:id="@+id/et_password"
         android:gravity="center"
-        android:hint="密码"
+        android:hint="密     码"
         android:layout_marginTop="5dp"
         android:layout_marginRight="40dp"
         android:layout_marginLeft="40dp"
@@ -31,7 +32,7 @@
         android:layout_height="40dp" />
 
     <EditText
-        android:textColorHint="@color/color_bcbcbc"
+        android:textColorHint="@color/black"
         android:id="@+id/et_code"
         android:gravity="center"
         android:hint="注册码"
@@ -49,7 +50,7 @@
         android:paddingLeft="90dp"
         android:paddingRight="90dp"
         android:background="@drawable/button_bg"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         android:layout_gravity="center"
         android:text="立即注册"
         android:layout_width="wrap_content"
