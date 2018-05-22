@@ -115,11 +115,13 @@ public class MachineFragment extends BaseDetailFragment<Sfj_Bean> {
     }
 
     public void refreshUi(Sfj_Bean bean){
-        ecData.setText(String.valueOf(bean.getTimeData().getEc()));
-        phData.setText(String.valueOf(bean.getTimeData().getPh()));
-        shllData.setText(String.valueOf(bean.getTimeData().getRateFlow()));
-        ljllData.setText(String.valueOf(bean.getTimeData().getTotalIrrigation()));
-        gdylData.setText(bean.getTimeData().getPipePressure());
-        ywData.setText(String.valueOf(bean.getTimeData().getLiquidLevel()));
+        if(bean!=null&&bean.getTimeData()!=null){
+            ecData.setText(String.valueOf(bean.getTimeData().getEc()));
+            phData.setText(String.valueOf(bean.getTimeData().getPh()));
+            shllData.setText(String.valueOf(bean.getTimeData().getRateFlow()));
+            ljllData.setText(String.valueOf(bean.getTimeData().getTotalIrrigation()));
+            gdylData.setText(bean.getTimeData().getPipePressure());
+            ywData.setText(String.valueOf(bean.getTimeData().getLiquidLevel()));
+        }
     }
 }
