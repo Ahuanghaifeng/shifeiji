@@ -21,7 +21,7 @@ import com.sfj.sfj.widget.CommentCardLayoutSHJ;
 import com.sfj.sfj.widget.EmptyLayout;
 import com.sfj.sfj.widget.SwitchGameDialog;
 
-public class MachineFragment extends BaseDetailFragment {
+public class MachineFragment extends BaseDetailFragment<Sfj_Bean> {
 
     SwitchGameDialog gameDialog;
     private TextView ecData,phData,shllData,ljllData,gdylData,ywData;
@@ -79,7 +79,7 @@ public class MachineFragment extends BaseDetailFragment {
         ecData = (TextView) view.findViewById(R.id.tv_ec_data);
         phData = (TextView) view.findViewById(R.id.tv_ph_data);
         shllData = (TextView) view.findViewById(R.id.tv_ssll_data);
-        ljllData = (TextView) view.findViewById(R.id.sfj_ljll);
+        ljllData = (TextView) view.findViewById(R.id.tv_ljll_data);
         gdylData = (TextView) view.findViewById(R.id.tv_gdyl_data);
         ywData = (TextView) view.findViewById(R.id.tv_yw_data);
     }
@@ -93,26 +93,20 @@ public class MachineFragment extends BaseDetailFragment {
 
     @Override
     protected void sendRequestData() {
-        super.sendRequestData();
         String username = AppInfoManager.getInstance().getUserInfo().getUsername();
         String password = AppInfoManager.getInstance().getUserInfo().getPassword();
-        TGBApi.doFertilizerInfo(username,password,"",new CloudSDKHttpHandler(new ICloudSDKHttpHandler() {
-            @Override
-            public void onSuccess(int statusCode, String mjson) {
-                ApiBean bean = JSON.parseObject(mjson,ApiBean.class);
-                if (bean!=null&&"200".equals(bean.getCode())){
-                    Sfj_Bean sfjData = JSON.parseObject(bean.getData(),Sfj_Bean.class);
-                    refreshUi(sfjData);
-                }else{
-                    ToastUtils.showShortToast(bean.getMsg());
-                }
-            }
+        TGBApi.doFertilizerInfo(username,password,"",mHandler);
+    }
 
-            @Override
-            public void onFailure(int statusCode, String responseBody, Throwable error) {
-                ToastUtils.showShortToast(R.string.error_view_network);
-            }
-        }));
+    @Override
+    protected void executeOnLoadDataSuccess(Sfj_Bean item) {
+        refreshUi(item);
+    }
+
+    @Override
+    protected Sfj_Bean parseItem(String mjson) {
+        Sfj_Bean sfjData = JSON.parseObject(mjson,Sfj_Bean.class);
+        return sfjData;
     }
 
     @Override
@@ -121,11 +115,11 @@ public class MachineFragment extends BaseDetailFragment {
     }
 
     public void refreshUi(Sfj_Bean bean){
-        ecData.setText(bean.getTimeData().getEc());
-        phData.setText(bean.getTimeData().getPh());
+        ecData.setText(String.valueOf(bean.getTimeData().getEc()));
+        phData.setText(String.valueOf(bean.getTimeData().getPh()));
         shllData.setText(String.valueOf(bean.getTimeData().getRateFlow()));
         ljllData.setText(String.valueOf(bean.getTimeData().getTotalIrrigation()));
         gdylData.setText(bean.getTimeData().getPipePressure());
-        ywData.setText(bean.getTimeData().getLiquidLevel());
+        ywData.setText(String.valueOf(bean.getTimeData().getLiquidLevel()));
     }
 }

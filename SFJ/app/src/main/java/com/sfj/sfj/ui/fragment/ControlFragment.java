@@ -33,7 +33,6 @@ public class ControlFragment extends BaseDetailFragment {
     }
 
 
-
     @Override
     protected int getDetailLayoutId() {
         return R.layout.fragment_control;
@@ -46,8 +45,8 @@ public class ControlFragment extends BaseDetailFragment {
         mSwipeRefreshLayout.setEnabled(false);
         mEmptyLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
         initCx(view);
-        ggsg = (TextView) view.findViewById(R.id.tv_jssg);
-        jssq = (TextView) view.findViewById(R.id.tv_ggsg);
+        jssq = (TextView) view.findViewById(R.id.tv_jssg);
+        ggsg = (TextView) view.findViewById(R.id.tv_ggsg);
         js1 = (TextView) view.findViewById(R.id.tv_js1);
         js2 = (TextView) view.findViewById(R.id.tv_js2);
         ggsg.setOnClickListener(onClickListener);
