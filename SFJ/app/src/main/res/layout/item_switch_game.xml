@@ -6,13 +6,12 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:background="@mipmap/icon_bottom_tab_sfj"
-        android:layout_gravity="center"
-        android:id="@+id/iv_game_icon"
-        app:roundedCornerRadius="10dp"
-        android:layout_width="50dp"
-        android:layout_height="50dp" />
+    <TextView
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:text="施肥机"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/tv_game_name"

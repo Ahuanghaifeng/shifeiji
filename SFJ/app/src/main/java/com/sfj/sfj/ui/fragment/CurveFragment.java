@@ -73,7 +73,6 @@ public class CurveFragment extends BaseDetailFragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.i("aaaaaaaaaa","aaa");
         getActivity().setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 }

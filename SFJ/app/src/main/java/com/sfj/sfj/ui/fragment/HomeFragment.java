@@ -75,8 +75,6 @@ public class HomeFragment extends BaseFragment {
     }
 
 
-
-
     public class HomeFragmentAdapter extends FragmentPagerAdapter {
 
 

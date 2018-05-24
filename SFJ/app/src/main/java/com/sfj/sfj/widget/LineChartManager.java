@@ -2,6 +2,7 @@ package com.sfj.sfj.widget;
 
 import android.text.LoginFilter;
 import android.util.Log;
+import android.util.TimeUtils;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
@@ -16,6 +17,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.sfj.sfj.utils.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,12 +28,14 @@ public class LineChartManager {
     private YAxis leftAxis;   //左边Y轴
     private YAxis rightAxis;  //右边Y轴
     private XAxis xAxis;      //X轴
+    private List<Long> times;
 
     public LineChartManager(LineChart mLineChart) {
         this.lineChart = mLineChart;
         leftAxis = lineChart.getAxisLeft();
         rightAxis = lineChart.getAxisRight();
         xAxis = lineChart.getXAxis();
+        times = new ArrayList<>();
     }
 
     /**
@@ -70,10 +74,11 @@ public class LineChartManager {
         lineChart.setTouchEnabled(true);
         //设置是否可以拖拽，缩放
         lineChart.setDragEnabled(true);
-        lineChart.setScaleEnabled(true);
+        lineChart.setScaleXEnabled(true);
+        lineChart.setScaleYEnabled(false);
         //设置是否能扩大扩小
         lineChart.setPinchZoom(true);
-        lineChart.zoom(2.5f,1f,0,0);
+        lineChart.zoom(5f,1f,0,0);
 
     }
 
@@ -124,7 +129,7 @@ public class LineChartManager {
         dataSets.add(lineDataSet);
         LineData data = new LineData(dataSets);
         //设置X轴的刻度数
-        xAxis.setLabelCount(xAxisValues.size(), false);
+        xAxis.setLabelCount(10, false);
         lineChart.setData(data);
     }
 
@@ -244,7 +249,11 @@ public class LineChartManager {
     public IAxisValueFormatter xValueFormatter = new IAxisValueFormatter() {
         @Override
         public String getFormattedValue(float value, AxisBase axis) { //value是横轴
-            return "17:3"+(int)value;
+            return TimeUtil.stampToDate(times.get((int)value));
         }
     };
+
+    public void setTime(long time){
+        times.add(time);
+    }
 }

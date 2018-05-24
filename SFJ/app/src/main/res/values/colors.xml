@@ -25,6 +25,7 @@
     <color name="color_a9a9a9">#a9a9a9</color>
     <color name="transluent">#0000</color>
     <color name="transluent_a">#99ffffff</color>
+    <color name="transluent_b">#504ea8ed</color>
     <color name="color_FFB358">#FFB358</color>
     <color name="color_F1F1F1">#F1F1F1</color>
     <color name="update_version">#4ea8ed</color>

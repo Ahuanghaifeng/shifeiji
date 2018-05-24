@@ -13,6 +13,8 @@ public class Sfj_Bean {
 
     private TimeDataBean timeData;
     private int fertilizerId;
+    private int isOnline;
+    private String fertilizerName;
     private List<FertilizersBean> fertilizers;
 
     public TimeDataBean getTimeData() {
@@ -37,6 +39,22 @@ public class Sfj_Bean {
 
     public void setFertilizers(List<FertilizersBean> fertilizers) {
         this.fertilizers = fertilizers;
+    }
+
+    public String getFertilizerName() {
+        return fertilizerName;
+    }
+
+    public void setFertilizerName(String fertilizerName) {
+        this.fertilizerName = fertilizerName;
+    }
+
+    public int getIsOnline() {
+        return isOnline;
+    }
+
+    public void setIsOnline(int isOnline) {
+        this.isOnline = isOnline;
     }
 
     public static class TimeDataBean {

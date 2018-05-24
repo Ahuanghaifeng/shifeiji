@@ -30,10 +30,12 @@ import java.util.List;
 public class SwitchGameDialog extends Dialog{
 
     private RecyclerView recyclerView;
-    private List<Sfj_Bean> mData;
+    private Sfj_Bean mData;
+    GameAdapter gameAdapter;
 
     public SwitchGameDialog(@NonNull Context context) {
         super(context, R.style.MyDialog);
+        gameAdapter = new GameAdapter(R.layout.item_switch_game);
     }
 
     public SwitchGameDialog(@NonNull Context context, @StyleRes int themeResId) {
@@ -47,19 +49,22 @@ public class SwitchGameDialog extends Dialog{
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_game);
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(),4);
-//        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(layoutManager);
-        GameAdapter gameAdapter = new GameAdapter(R.layout.item_switch_game,mData);
         recyclerView.setAdapter(gameAdapter);
         gameAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 if (onSwitchGameListener!=null){
-//                    onSwitchGameListener.OnSwitchGame();
+                    onSwitchGameListener.OnSwitchGame(String.valueOf(mData.getFertilizers().get(position).getFertilizerId()),mData.getFertilizers().get(position).getFertilizerName());
                     dismiss();
                 }
             }
         });
+    }
+
+    public void setmData(Sfj_Bean bean){
+        mData = bean;
+        gameAdapter.replaceData(mData.getFertilizers());
     }
 
     @Override
@@ -77,15 +82,15 @@ public class SwitchGameDialog extends Dialog{
         getWindow().setAttributes(layoutParams);
     }
 
-    private class GameAdapter extends BaseQuickAdapter<Sfj_Bean,BaseViewHolder>{
+    private class GameAdapter extends BaseQuickAdapter<Sfj_Bean.FertilizersBean,BaseViewHolder>{
 
-        public GameAdapter(@LayoutRes int layoutResId, @Nullable List<Sfj_Bean> data) {
-            super(layoutResId, data);
+        public GameAdapter(@LayoutRes int layoutResId) {
+            super(layoutResId);
         }
 
         @Override
-        protected void convert(BaseViewHolder helper, Sfj_Bean item) {
-
+        protected void convert(BaseViewHolder helper, Sfj_Bean.FertilizersBean item) {
+            helper.setText(R.id.tv_game_name,item.getFertilizerName());
         }
     }
 

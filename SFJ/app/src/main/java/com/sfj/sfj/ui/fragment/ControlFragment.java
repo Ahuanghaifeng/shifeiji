@@ -21,7 +21,7 @@ import java.util.List;
 public class ControlFragment extends BaseDetailFragment {
 
     private RecyclerView recyclerView;
-    private TextView ggsg,jssq,js1,js2;
+    private TextView ggsg,jssq,js1,js2,xf1,xf2,xf3,xf4;
 
     public static ControlFragment newInstance() {
 
@@ -49,10 +49,19 @@ public class ControlFragment extends BaseDetailFragment {
         ggsg = (TextView) view.findViewById(R.id.tv_ggsg);
         js1 = (TextView) view.findViewById(R.id.tv_js1);
         js2 = (TextView) view.findViewById(R.id.tv_js2);
+        xf1 = (TextView) view.findViewById(R.id.tv_xf_1);
+        xf2 = (TextView) view.findViewById(R.id.tv_xf_2);
+        xf3 = (TextView) view.findViewById(R.id.tv_xf_3);
+        xf4 = (TextView) view.findViewById(R.id.tv_xf_4);
+
         ggsg.setOnClickListener(onClickListener);
         jssq.setOnClickListener(onClickListener);
         js1.setOnClickListener(onClickListener);
         js2.setOnClickListener(onClickListener);
+        xf1.setOnClickListener(onClickListener);
+        xf2.setOnClickListener(onClickListener);
+        xf3.setOnClickListener(onClickListener);
+        xf4.setOnClickListener(onClickListener);
     }
 
     public void initCx(View view){
@@ -116,8 +125,48 @@ public class ControlFragment extends BaseDetailFragment {
                     changeSelectBg(list1);
                     break;
                 case R.id.tv_js1:
+                    List<TextView> list2 = new ArrayList<>();
+                    list2.add(js1);
+                    list2.add(js2);
+                    changeSelectBg(list2);
                     break;
                 case R.id.tv_js2:
+                    List<TextView> list3 = new ArrayList<>();
+                    list3.add(js2);
+                    list3.add(js1);
+                    changeSelectBg(list3);
+                    break;
+                case R.id.tv_xf_1:
+                    List<TextView> list4 = new ArrayList<>();
+                    list4.add(xf1);
+                    list4.add(xf2);
+                    list4.add(xf3);
+                    list4.add(xf4);
+                    changeSelectBg(list4);
+                    break;
+                case R.id.tv_xf_2:
+                    List<TextView> list5 = new ArrayList<>();
+                    list5.add(xf2);
+                    list5.add(xf1);
+                    list5.add(xf3);
+                    list5.add(xf4);
+                    changeSelectBg(list5);
+                    break;
+                case R.id.tv_xf_3:
+                    List<TextView> list6 = new ArrayList<>();
+                    list6.add(xf3);
+                    list6.add(xf1);
+                    list6.add(xf2);
+                    list6.add(xf4);
+                    changeSelectBg(list6);
+                    break;
+                case R.id.tv_xf_4:
+                    List<TextView> list7 = new ArrayList<>();
+                    list7.add(xf4);
+                    list7.add(xf1);
+                    list7.add(xf2);
+                    list7.add(xf3);
+                    changeSelectBg(list7);
                     break;
             }
         }
