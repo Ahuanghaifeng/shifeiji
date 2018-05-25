@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.sfj.sfj.R;
 import com.sfj.sfj.base.AppInfoManager;
 import com.sfj.sfj.base.BaseDetailActivity;
@@ -84,10 +85,13 @@ public class LoginActivity extends BaseDetailActivity{
                 hideWaitDialog();
                 ApiBean apiBean = JSON.parseObject(mjson,ApiBean.class);
                 if ("200".equals(apiBean.getCode())){
+                    JSONObject jsonObject = JSONObject.parseObject(apiBean.getData());
+                    String company = jsonObject.getString("company");
                     AppInfoManager.getInstance().setLogin(true);
                     UserInfo userInfo = new UserInfo();
                     userInfo.setUsername(name);
                     userInfo.setPassword(pw);
+                    userInfo.setCompany(company);
                     AppInfoManager.getInstance().saveUserInfo(userInfo);
                     ToastUtils.showShortToast("登录成功");
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);

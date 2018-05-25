@@ -5,6 +5,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -26,14 +28,15 @@ import com.sfj.sfj.widget.SwitchGameDialog;
 public class MachineFragment extends BaseDetailFragment<Sfj_Bean> {
 
     SwitchGameDialog gameDialog;
-    private TextView ecData,phData,shllData,ljllData,gdylData,ywData;
+    private TextView ecData, phData, shllData, ljllData, gdylData, ywData;
     private ScrollView mScrollView;
-    private TextView sfjName,sfjOnline;
+    private TextView sfjName, sfjOnline;
     private String fertilizerId;
+    private RelativeLayout ec,ph,shll,ljll,gdyl,yw;
 
     public static MachineFragment newInstance() {
         Bundle args = new Bundle();
-        args.putString(BUNDLE_KEY_FRAGMENT_TITLE,"施肥机");
+        args.putString(BUNDLE_KEY_FRAGMENT_TITLE, "施肥机");
         MachineFragment fragment = new MachineFragment();
         fragment.setArguments(args);
         return fragment;
@@ -42,28 +45,34 @@ public class MachineFragment extends BaseDetailFragment<Sfj_Bean> {
     @Override
     protected boolean initTitle(AppToolbar appBar) {
 
-        TextView rightText = appBar.creatRightView(TextView.class,new int[]{0,0,0,0},new int[]{0,0,10,0});
+        TextView rightText = appBar.creatRightView(TextView.class, new int[]{0, 0, 0, 0}, new int[]{0, 0, 10, 0});
         rightText.setTextColor(Color.parseColor("#000000"));
         rightText.setText("切换");
         rightText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (gameDialog==null){
+                if (gameDialog == null) {
                     gameDialog = new SwitchGameDialog(getContext());
                 }
                 gameDialog.show();
             }
         });
         appBar.showBottomLine(true);
-        TextView tvTitle = appBar.creatCenterView(TextView.class);
-        Bundle bundle = getArguments();
-        if (bundle != null) {
+        if ("蓝海科技".equals(AppInfoManager.getInstance().getUserInfo().getCompany())) {
+            ImageView ivTitle = appBar.creatCenterView(ImageView.class);
+            ivTitle.setImageResource(R.mipmap.icon_company);
+        } else {
+            TextView tvTitle = appBar.creatCenterView(TextView.class);
+            Bundle bundle = getArguments();
             if (bundle != null) {
-                tvTitle.setText(bundle.getString(BUNDLE_KEY_FRAGMENT_TITLE, ""));
+                if (bundle != null) {
+                    tvTitle.setText(bundle.getString(BUNDLE_KEY_FRAGMENT_TITLE, ""));
+                }
             }
         }
-        Drawable drawable= getResources().getDrawable(R.mipmap.left_arrow_back);
-        drawable.setBounds(0,0,drawable.getMinimumWidth(),drawable.getMinimumHeight());
+
+        Drawable drawable = getResources().getDrawable(R.mipmap.left_arrow_back);
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
         TextView leftTextView = appBar.creatLeftView(TextView.class);
         leftTextView.setCompoundDrawables(drawable, null, null, null);
         leftTextView.setCompoundDrawablePadding(10);
@@ -99,8 +108,8 @@ public class MachineFragment extends BaseDetailFragment<Sfj_Bean> {
         ljllData = (TextView) view.findViewById(R.id.tv_ljll_data);
         gdylData = (TextView) view.findViewById(R.id.tv_gdyl_data);
         ywData = (TextView) view.findViewById(R.id.tv_yw_data);
-        sfjName = (TextView)view.findViewById(R.id.tv_name);
-        sfjOnline = (TextView)view.findViewById(R.id.tv_state);
+        sfjName = (TextView) view.findViewById(R.id.tv_name);
+        sfjOnline = (TextView) view.findViewById(R.id.tv_state);
         gameDialog.setOnSwitchGameListener(new SwitchGameDialog.OnSwitchGameListener() {
             @Override
             public void OnSwitchGame(String gameId, String gameName) {
@@ -108,15 +117,21 @@ public class MachineFragment extends BaseDetailFragment<Sfj_Bean> {
                 mSwipeRefreshLayout.setRefreshing(true);
                 String username = AppInfoManager.getInstance().getUserInfo().getUsername();
                 String password = AppInfoManager.getInstance().getUserInfo().getPassword();
-                TGBApi.doFertilizerInfo(username,password,gameId,mHandler);
+                TGBApi.doFertilizerInfo(username, password, gameId, mHandler);
             }
         });
-        ecData.setOnClickListener(onClickListener);
-        phData.setOnClickListener(onClickListener);
-        shllData.setOnClickListener(onClickListener);
-        ljllData.setOnClickListener(onClickListener);
-        gdylData.setOnClickListener(onClickListener);
-        ywData.setOnClickListener(onClickListener);
+        ec = (RelativeLayout) view.findViewById(R.id.rl_ec);
+        ph = (RelativeLayout) view.findViewById(R.id.rl_ph);
+        shll = (RelativeLayout) view.findViewById(R.id.rl_ssll);
+        ljll = (RelativeLayout) view.findViewById(R.id.rl_ljll);
+        gdyl = (RelativeLayout) view.findViewById(R.id.rl_gdyl);
+        yw = (RelativeLayout) view.findViewById(R.id.rl_yw);
+        ec.setOnClickListener(onClickListener);
+        ph.setOnClickListener(onClickListener);
+        shll.setOnClickListener(onClickListener);
+        ljll.setOnClickListener(onClickListener);
+        gdyl.setOnClickListener(onClickListener);
+        yw.setOnClickListener(onClickListener);
     }
 
     @Override
@@ -130,7 +145,7 @@ public class MachineFragment extends BaseDetailFragment<Sfj_Bean> {
     protected void sendRequestData() {
         String username = AppInfoManager.getInstance().getUserInfo().getUsername();
         String password = AppInfoManager.getInstance().getUserInfo().getPassword();
-        TGBApi.doFertilizerInfo(username,password,"",mHandler);
+        TGBApi.doFertilizerInfo(username, password, "", mHandler);
     }
 
     @Override
@@ -140,7 +155,7 @@ public class MachineFragment extends BaseDetailFragment<Sfj_Bean> {
 
     @Override
     protected Sfj_Bean parseItem(String mjson) {
-        Sfj_Bean sfjData = JSON.parseObject(mjson,Sfj_Bean.class);
+        Sfj_Bean sfjData = JSON.parseObject(mjson, Sfj_Bean.class);
         return sfjData;
     }
 
@@ -149,23 +164,23 @@ public class MachineFragment extends BaseDetailFragment<Sfj_Bean> {
         return R.layout.fragment_machine;
     }
 
-    public void refreshUi(Sfj_Bean bean){
-        if(bean!=null&&bean.getTimeData()!=null){
+    public void refreshUi(Sfj_Bean bean) {
+        if (bean != null && bean.getTimeData() != null) {
             gameDialog.setmData(bean);
             fertilizerId = String.valueOf(bean.getFertilizerId());
             sfjName.setText(bean.getFertilizerName());
-            sfjOnline.setText(bean.getIsOnline()==1?"在线":"离线");
+            sfjOnline.setText(bean.getIsOnline() == 1 ? "在线" : "离线");
             ecData.setText(String.valueOf(bean.getTimeData().getEc()));
             phData.setText(String.valueOf(bean.getTimeData().getPh()));
             shllData.setText(String.valueOf(bean.getTimeData().getRateFlow()));
             ljllData.setText(String.valueOf(bean.getTimeData().getTotalIrrigation()));
             gdylData.setText(bean.getTimeData().getPipePressure());
             ywData.setText(String.valueOf(bean.getTimeData().getLiquidLevel()));
-        }else if (bean!=null&&bean.getTimeData()==null){
+        } else if (bean != null && bean.getTimeData() == null) {
             fertilizerId = String.valueOf(bean.getFertilizerId());
             gameDialog.setmData(bean);
             sfjName.setText(bean.getFertilizerName());
-            sfjOnline.setText(bean.getIsOnline()==1?"在线":"离线");
+            sfjOnline.setText(bean.getIsOnline() == 1 ? "在线" : "离线");
             ecData.setText(String.valueOf(0));
             phData.setText(String.valueOf(0));
             shllData.setText(String.valueOf(0));
@@ -178,19 +193,24 @@ public class MachineFragment extends BaseDetailFragment<Sfj_Bean> {
     private View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            switch (v.getId()){
-                case R.id.tv_ec_data:
-                    ((HomeFragment)getParentFragment()).start(SFJDetailFragment.newInstance("EC","ec",fertilizerId));
+            switch (v.getId()) {
+                case R.id.rl_ec:
+                    ((HomeFragment) getParentFragment()).start(SFJDetailFragment.newInstance("EC", "ec", fertilizerId));
                     break;
-                case R.id.tv_ph_data:
+                case R.id.rl_ph:
+                    ((HomeFragment) getParentFragment()).start(SFJDetailFragment.newInstance("pH", "pH", fertilizerId));
                     break;
-                case R.id.tv_ssll_data:
+                case R.id.rl_ssll:
+                    ((HomeFragment) getParentFragment()).start(SFJDetailFragment.newInstance("实时流量", "rateFlow", fertilizerId));
                     break;
-                case R.id.tv_ljll_data:
+                case R.id.rl_ljll:
+                    ((HomeFragment) getParentFragment()).start(SFJDetailFragment.newInstance("累积流量", "totalIrrigation", fertilizerId));
                     break;
-                case R.id.tv_gdyl_data:
+                case R.id.rl_gdyl:
+                    ((HomeFragment) getParentFragment()).start(SFJDetailFragment.newInstance("管道压力", "pipePressure", fertilizerId));
                     break;
-                case R.id.tv_yw_data:
+                case R.id.rl_yw:
+                    ((HomeFragment) getParentFragment()).start(SFJDetailFragment.newInstance("液位", "liquidLevel", fertilizerId));
                     break;
             }
         }
