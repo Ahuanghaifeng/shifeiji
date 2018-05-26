@@ -59,31 +59,38 @@ public class WeatherFragment extends BaseDetailFragment {
         mHumidity.setTvName("湿度");
         mHumidity.setIconHead(R.mipmap.icon_humidity);
         mHumidity.setData(50.5f,"当前湿度-%");
+        mHumidity.setOnClickListener(onClickListener);
 
         mSun = (CommentCardLayout) view.findViewById(R.id.card_sun);
         mSun.setTvName("光照");
         mSun.setIconHead(R.mipmap.icon_sun);
         mSun.setData(13.5f,"当前光照-LUX");
+        mSun.setOnClickListener(onClickListener);
 
         mAirPressure = (CommentCardLayout) view.findViewById(R.id.card_air_pressure);
         mAirPressure.setTvName("风速-西北风");
         mAirPressure.setIconHead(R.mipmap.icon_air_pressure);
         mAirPressure.setData(13.5f,"当前风速-m/s");
+        mAirPressure.setOnClickListener(onClickListener);
 
         mRain = (CommentCardLayout) view.findViewById(R.id.card_rain);
         mRain.setTvName("雨量");
         mRain.setIconHead(R.mipmap.icon_rain);
         mRain.setData(20f,"当前雨量-mm/d");
+        mRain.setOnClickListener(onClickListener);
 
         mSoilTemperature = (CommentCardLayout) view.findViewById(R.id.card_soil_temperature);
         mSoilTemperature.setTvName("土壤温度");
         mSoilTemperature.setIconHead(R.mipmap.icon_soil_temperature);
         mSoilTemperature.setData(20f,"土壤温度-℃");
+        mSoilTemperature.setOnClickListener(onClickListener);
 
         mSoilHumidity = (CommentCardLayout) view.findViewById(R.id.card_soil_humidity);
         mSoilHumidity.setTvName("土壤湿度");
         mSoilHumidity.setIconHead(R.mipmap.icon_soil_humidity);
-        mSoilHumidity.setData(20f,"土壤温度-%");
+        mSoilHumidity.setData(20f,"土壤湿度-%");
+        mSoilHumidity.setOnClickListener(onClickListener);
+
     }
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -94,6 +101,22 @@ public class WeatherFragment extends BaseDetailFragment {
                     ((HomeFragment)getParentFragment()).start(CurveFragment.newInstance("温度"));
                     break;
                 case R.id.card_humidity:
+                    ((HomeFragment)getParentFragment()).start(CurveFragment.newInstance("湿度"));
+                    break;
+                case R.id.card_sun:
+                    ((HomeFragment)getParentFragment()).start(CurveFragment.newInstance("光照"));
+                    break;
+                case R.id.card_air_pressure:
+                    ((HomeFragment)getParentFragment()).start(CurveFragment.newInstance("风速-风向"));
+                    break;
+                case R.id.card_rain:
+                    ((HomeFragment)getParentFragment()).start(CurveFragment.newInstance("雨量"));
+                    break;
+                case R.id.card_soil_temperature:
+                    ((HomeFragment)getParentFragment()).start(CurveFragment.newInstance("土壤温度"));
+                    break;
+                case R.id.card_soil_humidity:
+                    ((HomeFragment)getParentFragment()).start(CurveFragment.newInstance("土壤湿度"));
                     break;
             }
         }

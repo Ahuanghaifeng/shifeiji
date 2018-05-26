@@ -173,11 +173,9 @@ public class ControlFragment extends BaseDetailFragment {
     };
 
     public void changeSelectBg(List<TextView> views){
-        views.get(0).setTextColor(Color.WHITE);
-        views.get(0).setBackgroundResource(R.drawable.select_bg);
+        views.get(0).setBackgroundResource(R.drawable.icon_control_checked);
         for (int i = 1;i<views.size();i++){
-            views.get(i).setTextColor(Color.parseColor("#585858"));
-            views.get(i).setBackgroundResource(R.drawable.select_bg_gray);
+            views.get(i).setBackgroundResource(R.drawable.icon_control_check);
         }
     }
 }
