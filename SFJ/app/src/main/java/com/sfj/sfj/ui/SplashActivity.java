@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.sfj.sfj.base.AppInfoManager;
-
 /**
  * Created by 黄海峰 on 2018/5/15.
  */
@@ -16,11 +14,11 @@ public class SplashActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (AppInfoManager.getInstance().isLogin()){
+//        if (AppInfoManager.getInstance().isLogin()){
             startMain();
-        }else{
-            startLogin();
-        }
+//        }else{
+//            startLogin();
+//        }
     }
 
     public void startMain(){
