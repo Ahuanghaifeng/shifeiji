@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@mipmap/login_bg"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -15,18 +16,10 @@
             android:text="请选择程序控制施肥机"
             android:textColor="@color/black" />
 
-        <LinearLayout
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_cx"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_cx"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </android.support.v7.widget.RecyclerView>
-
-        </LinearLayout>
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 
         <TextView
             android:layout_width="wrap_content"
@@ -40,24 +33,24 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:background="@drawable/icon_control_checked"
-                android:gravity="center"
+                android:textColor="@color/black"
                 android:id="@+id/tv_ggsg"
                 android:layout_width="wrap_content"
-                android:layout_height="70dp"
+                android:layout_height="60dp"
                 android:layout_marginLeft="20dp"
-                android:text="灌溉水泵"
-                android:textSize="18sp" />
+                android:background="@drawable/icon_control_check"
+                android:gravity="center"
+                android:text="灌溉水泵" />
 
             <TextView
-                android:background="@drawable/icon_control_checked"
-                android:gravity="center"
+                android:textColor="@color/black"
                 android:id="@+id/tv_jssg"
                 android:layout_width="wrap_content"
-                android:layout_height="70dp"
+                android:layout_height="60dp"
                 android:layout_marginLeft="20dp"
-                android:text="进水水泵"
-                android:textSize="18sp" />
+                android:background="@drawable/icon_control_check"
+                android:gravity="center"
+                android:text="进水水泵" />
         </LinearLayout>
 
         <TextView
@@ -72,22 +65,25 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:textColor="@color/black"
                 android:id="@+id/tv_js1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
                 android:layout_marginLeft="20dp"
-                android:padding="5dp"
-                android:text="1号"
-                android:textSize="18sp"/>
+                android:background="@drawable/icon_control_check"
+                android:gravity="center"
+                android:text="1号" />
 
             <TextView
+                android:textColor="@color/black"
                 android:id="@+id/tv_js2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
                 android:layout_marginLeft="20dp"
-                android:padding="5dp"
+                android:background="@drawable/icon_control_check"
+                android:gravity="center"
                 android:text="2号"
-                android:textSize="18sp" />
+                 />
         </LinearLayout>
 
         <TextView
@@ -102,41 +98,50 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:textColor="@color/black"
                 android:id="@+id/tv_xf_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
                 android:layout_marginLeft="20dp"
-                android:padding="5dp"
+                android:background="@drawable/icon_control_check"
+                android:gravity="center"
                 android:text="1号"
-                android:textSize="18sp" />
+                 />
 
             <TextView
+                android:textColor="@color/black"
                 android:id="@+id/tv_xf_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
                 android:layout_marginLeft="20dp"
-                android:padding="5dp"
+                android:background="@drawable/icon_control_check"
+                android:gravity="center"
                 android:text="2号"
-                android:textSize="18sp" />
+                 />
 
             <TextView
+                android:textColor="@color/black"
                 android:id="@+id/tv_xf_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
                 android:layout_marginLeft="20dp"
-                android:padding="5dp"
+                android:background="@drawable/icon_control_check"
+                android:gravity="center"
                 android:text="3号"
-                android:textSize="18sp" />
+                 />
 
-            <TextView
-                android:id="@+id/tv_xf_4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:padding="5dp"
-                android:text="4号"
-                android:textSize="18sp" />
         </LinearLayout>
+
+        <TextView
+            android:textColor="@color/black"
+            android:id="@+id/tv_xf_4"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/icon_control_check"
+            android:gravity="center"
+            android:text="4号"
+             />
 
         <TextView
             android:layout_width="wrap_content"
@@ -156,95 +161,117 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_gg_1"
+                    android:textColor="@color/black"
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
-                    android:padding="5dp"
+                    android:background="@drawable/icon_control_check"
+                    android:gravity="center"
                     android:text="1号"
-                    android:textSize="18sp" />
+                     />
 
                 <TextView
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_gg_2"
+                    android:textColor="@color/black"
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
-                    android:padding="5dp"
+                    android:background="@drawable/icon_control_check"
+                    android:gravity="center"
                     android:text="2号"
-                    android:textSize="18sp" />
+                     />
 
                 <TextView
+                    android:id="@+id/tv_gg_3"
+                    android:textColor="@color/black"
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/icon_control_check"
                     android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:padding="5dp"
                     android:text="3号"
-                    android:textSize="18sp" />
+                     />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_gg_4"
+                    android:textColor="@color/black"
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
-                    android:padding="5dp"
+                    android:background="@drawable/icon_control_check"
+                    android:gravity="center"
                     android:text="4号"
-                    android:textSize="18sp" />
+                     />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_gg_5"
+                    android:textColor="@color/black"
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
-                    android:padding="5dp"
+                    android:background="@drawable/icon_control_check"
+                    android:gravity="center"
                     android:text="5号"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                     />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_gg_6"
+                    android:textColor="@color/black"
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
-                    android:padding="5dp"
+                    android:background="@drawable/icon_control_check"
+                    android:gravity="center"
                     android:text="6号"
-                    android:textSize="18sp" />
+                     />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_gg_7"
+                    android:textColor="@color/black"
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
-                    android:padding="5dp"
+                    android:background="@drawable/icon_control_check"
+                    android:gravity="center"
                     android:text="7号"
-                    android:textSize="18sp" />
+                     />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_gg_8"
+                    android:textColor="@color/black"
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
-                    android:padding="5dp"
+                    android:background="@drawable/icon_control_check"
+                    android:gravity="center"
                     android:text="8号"
-                    android:textSize="18sp" />
+                     />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_gg_9"
+                    android:textColor="@color/black"
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
-                    android:padding="5dp"
+                    android:background="@drawable/icon_control_check"
+                    android:gravity="center"
                     android:text="9号"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:padding="5dp"
-                    android:text="10号"
-                    android:textSize="18sp" />
-
+                     />
             </LinearLayout>
 
             <LinearLayout
@@ -253,69 +280,104 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_gg_10"
+                    android:textColor="@color/black"
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
-                    android:padding="5dp"
+                    android:background="@drawable/icon_control_check"
+                    android:gravity="center"
+                    android:text="10号"
+                     />
+
+                <TextView
+                    android:id="@+id/tv_gg_11"
+                    android:textColor="@color/black"
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/icon_control_check"
+                    android:gravity="center"
                     android:text="11号"
-                    android:textSize="18sp" />
+                     />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_gg_12"
+                    android:textColor="@color/black"
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
-                    android:padding="5dp"
+                    android:background="@drawable/icon_control_check"
+                    android:gravity="center"
                     android:text="12号"
-                    android:textSize="18sp" />
+                     />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_gg_13"
+                    android:textColor="@color/black"
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
-                    android:padding="5dp"
+                    android:background="@drawable/icon_control_check"
+                    android:gravity="center"
                     android:text="13号"
-                    android:textSize="18sp" />
+                     />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_gg_14"
+                    android:textColor="@color/black"
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
-                    android:padding="5dp"
+                    android:background="@drawable/icon_control_check"
+                    android:gravity="center"
                     android:text="14号"
-                    android:textSize="18sp" />
+                     />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_gg_15"
+                    android:textColor="@color/black"
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
-                    android:padding="5dp"
+                    android:background="@drawable/icon_control_check"
+                    android:gravity="center"
                     android:text="15号"
-                    android:textSize="18sp" />
+                     />
 
             </LinearLayout>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/tv_gg_16"
+                android:textColor="@color/black"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
                 android:layout_marginLeft="20dp"
-                android:padding="5dp"
+                android:background="@drawable/icon_control_check"
+                android:gravity="center"
                 android:text="16号"
-                android:textSize="18sp" />
+                 />
 
         </LinearLayout>
 
         <Button
-            android:layout_marginBottom="60dp"
             android:id="@+id/bt_send"
-            android:textSize="20sp"
-            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="60dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/button_bg"
             android:paddingLeft="80dp"
             android:paddingRight="80dp"
-            android:background="@drawable/button_bg"
-            android:layout_marginTop="30dp"
-            android:layout_gravity="center"
             android:text="发送"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textColor="@color/white"
+            android:textSize="20sp" />
     </LinearLayout>
 </ScrollView>
