@@ -1,8 +1,7 @@
 package com.sfj.sfj.widget;
 
-import android.text.LoginFilter;
-import android.util.Log;
-import android.util.TimeUtils;
+import android.content.Context;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
@@ -10,13 +9,17 @@ import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.LimitLine;
+import com.github.mikephil.charting.components.MarkerView;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.utils.MPPointF;
+import com.sfj.sfj.R;
 import com.sfj.sfj.utils.TimeUtil;
 
 import java.util.ArrayList;
@@ -79,6 +82,9 @@ public class LineChartManager {
         //设置是否能扩大扩小
         lineChart.setPinchZoom(true);
         lineChart.zoom(5f,1f,0,0);
+
+        XYMarkerView mv = new XYMarkerView(lineChart.getContext());
+        lineChart.setMarker(mv);
 
     }
 
@@ -249,11 +255,38 @@ public class LineChartManager {
     public IAxisValueFormatter xValueFormatter = new IAxisValueFormatter() {
         @Override
         public String getFormattedValue(float value, AxisBase axis) { //value是横轴
-            return TimeUtil.stampToDate(times.get((int)value));
+            if (times.size()!=0){
+                return TimeUtil.stampToDate(times.get((int)value));
+            }
+            return value+"";
         }
     };
 
     public void setTime(long time){
         times.add(time);
+    }
+
+    public class XYMarkerView extends MarkerView{
+
+        private TextView tv;
+        /**
+         * Constructor. Sets up the MarkerView with a custom layout resource.
+         * @param context
+         */
+        public XYMarkerView(Context context) {
+            super(context, R.layout.txetview_markerview);
+            tv = (TextView) findViewById(R.id.tv_marker);
+        }
+
+        @Override
+        public void refreshContent(Entry e, Highlight highlight) {
+            tv.setText(String.valueOf(e.getY()));
+            super.refreshContent(e, highlight);
+        }
+
+        @Override
+        public MPPointF getOffset() {
+            return new MPPointF(-(getWidth() / 2), -getHeight() - 10);
+        }
     }
 }

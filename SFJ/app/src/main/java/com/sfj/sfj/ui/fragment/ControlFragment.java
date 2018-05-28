@@ -1,8 +1,6 @@
 package com.sfj.sfj.ui.fragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -54,6 +52,15 @@ public class ControlFragment extends BaseDetailFragment {
         xf3 = (TextView) view.findViewById(R.id.tv_xf_3);
         xf4 = (TextView) view.findViewById(R.id.tv_xf_4);
 
+        jssq.setTag(false);
+        ggsg.setTag(false);
+        js1.setTag(false);
+        js2.setTag(false);
+        xf1.setTag(false);
+        xf2.setTag(false);
+        xf3.setTag(false);
+        xf4.setTag(false);
+
         ggsg.setOnClickListener(onClickListener);
         jssq.setOnClickListener(onClickListener);
         js1.setOnClickListener(onClickListener);
@@ -65,7 +72,7 @@ public class ControlFragment extends BaseDetailFragment {
     }
 
     public void initCx(View view){
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),4);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),3);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_cx);
         recyclerView.setLayoutManager(gridLayoutManager);
         final CxGridAdapter cxGridAdapter = new CxGridAdapter(R.layout.item_text_view);
@@ -79,10 +86,7 @@ public class ControlFragment extends BaseDetailFragment {
         cxGridAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                for (int j =0;j<datas.size();j++){
-                    datas.get(j).setCheck(false);
-                }
-                datas.get(position).setCheck(true);
+                datas.get(position).setCheck(!datas.get(position).isCheck());
                 cxGridAdapter.notifyDataSetChanged();
             }
         });
@@ -97,14 +101,12 @@ public class ControlFragment extends BaseDetailFragment {
 
         @Override
         protected void convert(BaseViewHolder helper, CxBean item) {
-            helper.setText(R.id.tv_1,item.getName());
             if (item.isCheck()){
-                ((TextView)helper.getView(R.id.tv_1)).setTextColor(Color.WHITE);
-                helper.getView(R.id.tv_1).setBackgroundResource(R.drawable.select_bg);
+                helper.getView(R.id.tv_1).setBackgroundResource(R.drawable.icon_control_checked);
             }else{
-                ((TextView)helper.getView(R.id.tv_1)).setTextColor(Color.parseColor("#585858"));
-                helper.getView(R.id.tv_1).setBackgroundResource(R.drawable.select_bg_gray);
+                helper.getView(R.id.tv_1).setBackgroundResource(R.drawable.icon_control_check);
             }
+            helper.setText(R.id.tv_1,item.getName());
         }
     }
 
@@ -113,69 +115,46 @@ public class ControlFragment extends BaseDetailFragment {
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.tv_jssg:
-                    List<TextView> list = new ArrayList<>();
-                    list.add(jssq);
-                    list.add(ggsg);
-                    changeSelectBg(list);
+                    jssq.setTag(!(boolean)jssq.getTag());
+                    changeSelectBg(jssq);
                     break;
                 case R.id.tv_ggsg:
-                    List<TextView> list1 = new ArrayList<>();
-                    list1.add(ggsg);
-                    list1.add(jssq);
-                    changeSelectBg(list1);
+                    ggsg.setTag(!(boolean)ggsg.getTag());
+                    changeSelectBg(ggsg);
                     break;
                 case R.id.tv_js1:
-                    List<TextView> list2 = new ArrayList<>();
-                    list2.add(js1);
-                    list2.add(js2);
-                    changeSelectBg(list2);
+                    js1.setTag(!(boolean)js1.getTag());
+                    changeSelectBg(js1);
                     break;
                 case R.id.tv_js2:
-                    List<TextView> list3 = new ArrayList<>();
-                    list3.add(js2);
-                    list3.add(js1);
-                    changeSelectBg(list3);
+                    js2.setTag(!(boolean)js2.getTag());
+                    changeSelectBg(js2);
                     break;
                 case R.id.tv_xf_1:
-                    List<TextView> list4 = new ArrayList<>();
-                    list4.add(xf1);
-                    list4.add(xf2);
-                    list4.add(xf3);
-                    list4.add(xf4);
-                    changeSelectBg(list4);
+                    xf1.setTag(!(boolean)xf1.getTag());
+                    changeSelectBg(xf1);
                     break;
                 case R.id.tv_xf_2:
-                    List<TextView> list5 = new ArrayList<>();
-                    list5.add(xf2);
-                    list5.add(xf1);
-                    list5.add(xf3);
-                    list5.add(xf4);
-                    changeSelectBg(list5);
+                    xf2.setTag(!(boolean)xf2.getTag());
+                    changeSelectBg(xf2);
                     break;
                 case R.id.tv_xf_3:
-                    List<TextView> list6 = new ArrayList<>();
-                    list6.add(xf3);
-                    list6.add(xf1);
-                    list6.add(xf2);
-                    list6.add(xf4);
-                    changeSelectBg(list6);
+                    xf3.setTag(!(boolean)xf3.getTag());
+                    changeSelectBg(xf3);
                     break;
                 case R.id.tv_xf_4:
-                    List<TextView> list7 = new ArrayList<>();
-                    list7.add(xf4);
-                    list7.add(xf1);
-                    list7.add(xf2);
-                    list7.add(xf3);
-                    changeSelectBg(list7);
+                    xf4.setTag(!(boolean)xf4.getTag());
+                    changeSelectBg(xf4);
                     break;
             }
         }
     };
 
-    public void changeSelectBg(List<TextView> views){
-        views.get(0).setBackgroundResource(R.drawable.icon_control_checked);
-        for (int i = 1;i<views.size();i++){
-            views.get(i).setBackgroundResource(R.drawable.icon_control_check);
+    public void changeSelectBg(TextView view){
+        if ((boolean)view.getTag()){
+            view.setBackgroundResource(R.drawable.icon_control_checked);
+        }else{
+            view.setBackgroundResource(R.drawable.icon_control_check);
         }
     }
 }
