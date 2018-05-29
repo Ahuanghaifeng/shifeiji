@@ -93,7 +93,11 @@ public abstract class BaseDetailFragment<T> extends BaseFragment implements Swip
     private void executeOnLoadDataFail(String errorMessage) {
         mEmptyLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
         mSwipeRefreshLayout.setRefreshing(false);
-        ToastUtils.showShortToast(R.string.error_view_network);
+        if (errorMessage!=null){
+            ToastUtils.showShortToast(errorMessage);
+        }else{
+            ToastUtils.showShortToast(R.string.error_view_network);
+        }
     }
 
     protected void executeOnLoadDataSuccess(T item) {

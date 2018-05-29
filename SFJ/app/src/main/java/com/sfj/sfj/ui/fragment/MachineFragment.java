@@ -112,7 +112,7 @@ public class MachineFragment extends BaseDetailFragment<Sfj_Bean> {
         sfjOnline = (TextView) view.findViewById(R.id.tv_state);
         gameDialog.setOnSwitchGameListener(new SwitchGameDialog.OnSwitchGameListener() {
             @Override
-            public void OnSwitchGame(String gameId, String gameName) {
+            public void OnSwitchGame(String gameId, String gameName,int isOnline) {
                 fertilizerId = gameId;
                 mSwipeRefreshLayout.setRefreshing(true);
                 String username = AppInfoManager.getInstance().getUserInfo().getUsername();
@@ -166,7 +166,7 @@ public class MachineFragment extends BaseDetailFragment<Sfj_Bean> {
 
     public void refreshUi(Sfj_Bean bean) {
         if (bean != null && bean.getTimeData() != null) {
-            gameDialog.setmData(bean);
+            gameDialog.setmData(bean.getFertilizers());
             fertilizerId = String.valueOf(bean.getFertilizerId());
             sfjName.setText(bean.getFertilizerName());
             sfjOnline.setText(bean.getIsOnline() == 1 ? "在线" : "离线");
@@ -178,7 +178,7 @@ public class MachineFragment extends BaseDetailFragment<Sfj_Bean> {
             ywData.setText(String.valueOf(bean.getTimeData().getLiquidLevel()));
         } else if (bean != null && bean.getTimeData() == null) {
             fertilizerId = String.valueOf(bean.getFertilizerId());
-            gameDialog.setmData(bean);
+            gameDialog.setmData(bean.getFertilizers());
             sfjName.setText(bean.getFertilizerName());
             sfjOnline.setText(bean.getIsOnline() == 1 ? "在线" : "离线");
             ecData.setText(String.valueOf(0));

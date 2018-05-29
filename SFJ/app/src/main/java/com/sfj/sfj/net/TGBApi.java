@@ -70,4 +70,26 @@ public class TGBApi {
         BaseApiHelper.getInstance().callEnqueue(BaseApiHelper.getInstance().getApiServer(ApiServiceBean.PAY_DOMAIN_KEY, FertilizerService.class).
                 postData("appChangeCharts.do",postData), handler);
     }
+
+    public static void doFertilizerToControl(String username,String password,String fertilizerId,CloudSDKHttpHandler handler){
+        Map<String,String> postData = new HashMap<>();
+        postData.put("username",username);
+        postData.put("password",password);
+        postData.put("fertilizerId",fertilizerId);
+        BaseApiHelper.getInstance().callEnqueue(BaseApiHelper.getInstance().getApiServer(ApiServiceBean.PAY_DOMAIN_KEY, FertilizerService.class).
+                postData("appToControl.do",postData), handler);
+
+    }
+
+    public static void doFertilizerControl(String username,String password,String fertilizerId,Map<String,String> data,CloudSDKHttpHandler handler){
+        Map<String,String> postData = new HashMap<>();
+        postData.put("username",username);
+        postData.put("password",password);
+        postData.put("fertilizerId",fertilizerId);
+        postData.putAll(data);
+        BaseApiHelper.getInstance().callEnqueue(BaseApiHelper.getInstance().getApiServer(ApiServiceBean.PAY_DOMAIN_KEY, FertilizerService.class).
+                postData("appControl.do",postData), handler);
+
+    }
+
 }

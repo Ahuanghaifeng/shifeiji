@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.sfj.sfj.R;
+import com.sfj.sfj.bean.ControlBean;
 import com.sfj.sfj.bean.Sfj_Bean;
 import com.sfj.sfj.utils.PxUtil;
 import com.sfj.sfj.utils.ScreenUtils;
@@ -30,7 +31,7 @@ import java.util.List;
 public class SwitchGameDialog extends Dialog{
 
     private RecyclerView recyclerView;
-    private Sfj_Bean mData;
+    private List<Sfj_Bean.FertilizersBean> mData;
     GameAdapter gameAdapter;
 
     public SwitchGameDialog(@NonNull Context context) {
@@ -55,16 +56,16 @@ public class SwitchGameDialog extends Dialog{
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 if (onSwitchGameListener!=null){
-                    onSwitchGameListener.OnSwitchGame(String.valueOf(mData.getFertilizers().get(position).getFertilizerId()),mData.getFertilizers().get(position).getFertilizerName());
+                    onSwitchGameListener.OnSwitchGame(String.valueOf(mData.get(position).getFertilizerId()),mData.get(position).getFertilizerName(),mData.get(position).getIsOnline());
                     dismiss();
                 }
             }
         });
     }
 
-    public void setmData(Sfj_Bean bean){
+    public void setmData(List<Sfj_Bean.FertilizersBean> bean){
         mData = bean;
-        gameAdapter.replaceData(mData.getFertilizers());
+        gameAdapter.replaceData(mData);
     }
 
     @Override
@@ -95,7 +96,7 @@ public class SwitchGameDialog extends Dialog{
     }
 
     public interface OnSwitchGameListener{
-        void OnSwitchGame(String gameId, String gameName);
+        void OnSwitchGame(String gameId, String gameName,int isOnline);
     }
 
     OnSwitchGameListener onSwitchGameListener;

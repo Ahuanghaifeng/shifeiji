@@ -263,7 +263,7 @@ public class Sfj_Bean {
         private String addr;
         private Object coordinate;
         private Object state;
-        private Object isOnline;
+        private int isOnline;
         private Object desc;
         private Object prodDate;
         private String dtuCode;
@@ -310,11 +310,11 @@ public class Sfj_Bean {
             this.state = state;
         }
 
-        public Object getIsOnline() {
+        public int getIsOnline() {
             return isOnline;
         }
 
-        public void setIsOnline(Object isOnline) {
+        public void setIsOnline(int isOnline) {
             this.isOnline = isOnline;
         }
 
