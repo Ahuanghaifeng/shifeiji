@@ -1,19 +1,14 @@
 package com.sfj.sfj.ui.fragment;
 
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -24,23 +19,18 @@ import com.sfj.sfj.base.BaseActivity;
 import com.sfj.sfj.base.BaseDetailFragment;
 import com.sfj.sfj.bean.ApiBean;
 import com.sfj.sfj.bean.ControlBean;
-import com.sfj.sfj.bean.CxBean;
 import com.sfj.sfj.bean.Sfj_Bean;
 import com.sfj.sfj.net.CloudSDKHttpHandler;
 import com.sfj.sfj.net.ICloudSDKHttpHandler;
 import com.sfj.sfj.net.TGBApi;
 import com.sfj.sfj.utils.ToastUtils;
 import com.sfj.sfj.widget.AppToolbar;
-import com.sfj.sfj.widget.EmptyLayout;
 import com.sfj.sfj.widget.SwitchGameDialog;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class ControlFragment extends BaseDetailFragment<ControlBean> {
 
@@ -146,7 +136,7 @@ public class ControlFragment extends BaseDetailFragment<ControlBean> {
         cxGridAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                send(position+1,(int)adapter.getItem(position),"appProgramControl.do");
+                send(position+1,(int)adapter.getItem(position)==0?1:0,"appProgramControl.do");
             }
         });
         recyclerView.setAdapter(cxGridAdapter);
@@ -157,7 +147,7 @@ public class ControlFragment extends BaseDetailFragment<ControlBean> {
         ggGridAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                send(position+1,(int)adapter.getItem(position),"appControl.do");
+                send(position+1,(int)adapter.getItem(position)==0?1:0,"appManualControl.do");
             }
         });
         recyclerView1.setAdapter(ggGridAdapter);
@@ -207,8 +197,8 @@ public class ControlFragment extends BaseDetailFragment<ControlBean> {
     @Override
     protected void executeOnLoadDataSuccess(ControlBean item) {
         refreshSfj(item);
-        ggGridAdapter.addData(item.getIrrigValves());
-        cxGridAdapter.addData(item.getPrograms());
+        ggGridAdapter.replaceData(item.getIrrigValves());
+        cxGridAdapter.replaceData(item.getPrograms());
     }
 
 
@@ -244,7 +234,7 @@ public class ControlFragment extends BaseDetailFragment<ControlBean> {
                 ((BaseActivity)getActivity()).hideWaitDialog();
                 ApiBean bean = JSON.parseObject(mjson,ApiBean.class);
                 if ("200".equals(bean.getCode())){
-                    ToastUtils.showShortToast("发送成功");
+                    ToastUtils.showLongToast("发送成功,更新界面中请稍后...");
                     sendRequestData();
                 }else{
                     ToastUtils.showShortToast(bean.getMsg());
