@@ -12,27 +12,7 @@ import java.util.Map;
 
 public class TGBApi {
 
-
-
-//    //微信帐号登录接口
-//    public static void doGetLoginInfo(String accesstoken, String openid, CloudSDKHttpHandler handler) {
-//        String action = "wxlogin";
-//        String token = String.valueOf(System.currentTimeMillis());
-//
-//
-//        AppConfigInfo.setTimestamp(token);//设置时间戳
-//        AppConfigInfo.setAction(action);//设置执行动作
-//        HashMap<String, String> params = new HashMap<>();
-//        params.put("code", accesstoken);
-//        params.put("openId", openid);
-//        AppConfigInfo.setExtraStr(params);//设置额外参数
-//        Map<String, String> postData = AppConfigInfo.converToString();//转化最终格式
-////        RequestBody body = RequestBody.create(MediaType.parse("application/json;charset=utf-8"), postData);
-//        BaseApiHelper.getInstance().callEnqueue(BaseApiHelper.getInstance().getApiServer(ApiServiceBean.PAY_DOMAIN_KEY, UserConfigService.class).
-//                postData(action, postData), handler);
-//
-//    }
-
+    //注册接口
     public static void doRegister(String username,String password,String registerCode,CloudSDKHttpHandler handler){
         Map<String,String> postData = new HashMap<>();
         postData.put("username",username);
@@ -42,6 +22,7 @@ public class TGBApi {
                 postData("register.do",postData), handler);
     }
 
+    //登录接口
     public static void doLogin(String username,String password,CloudSDKHttpHandler handler){
         Map<String,String> postData = new HashMap<>();
         postData.put("username",username);
@@ -71,6 +52,7 @@ public class TGBApi {
                 postData("appChangeCharts.do",postData), handler);
     }
 
+    //控制界面接口
     public static void doFertilizerToControl(String username,String password,String fertilizerId,CloudSDKHttpHandler handler){
         Map<String,String> postData = new HashMap<>();
         postData.put("username",username);
@@ -81,15 +63,36 @@ public class TGBApi {
 
     }
 
-    public static void doFertilizerControl(String username,String password,String fertilizerId,Map<String,String> data,CloudSDKHttpHandler handler){
+    //控制灌溉机接口和控制灌溉机接口
+    public static void doFertilizerControl(String username,String password,String fertilizerId,Map<String,String> data,String action,CloudSDKHttpHandler handler){
         Map<String,String> postData = new HashMap<>();
         postData.put("username",username);
         postData.put("password",password);
         postData.put("fertilizerId",fertilizerId);
         postData.putAll(data);
         BaseApiHelper.getInstance().callEnqueue(BaseApiHelper.getInstance().getApiServer(ApiServiceBean.PAY_DOMAIN_KEY, FertilizerService.class).
-                postData("appControl.do",postData), handler);
+                postData(action,postData), handler);
 
+    }
+
+
+    //气象站接口
+    public static void doFertilizerWeather(String username,String password,CloudSDKHttpHandler handler){
+        Map<String,String> postData = new HashMap<>();
+        postData.put("username",username);
+        postData.put("password",password);
+        BaseApiHelper.getInstance().callEnqueue(BaseApiHelper.getInstance().getApiServer(ApiServiceBean.PAY_DOMAIN_KEY, FertilizerService.class).
+                postData("appGetClimatic.do",postData), handler);
+    }
+
+    //气象站折线图接口
+    public static void doFertilizerWeatherCharts(String username,String password,String type,CloudSDKHttpHandler handler){
+        Map<String,String> postData = new HashMap<>();
+        postData.put("username",username);
+        postData.put("password",password);
+        postData.put("type",type);
+        BaseApiHelper.getInstance().callEnqueue(BaseApiHelper.getInstance().getApiServer(ApiServiceBean.PAY_DOMAIN_KEY, FertilizerService.class).
+                postData("appChangeClimaticCharts.do",postData), handler);
     }
 
 }

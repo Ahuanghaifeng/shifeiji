@@ -57,7 +57,7 @@ public class ApiServiceItem {
 
     private DomainBean getDevDomainBean() {
         DomainBean devDomainBean = new DomainBean();
-        devDomainBean.setPay("http://221.218.208.60:9090/");
+        devDomainBean.setPay("http://123.112.16.178:9090/");
 //        devDomainBean.setUserInfo("http://phone.91y.com/");//
 //        devDomainBean.setUserCenter("http://phone.91y.com/center.aspx");//
 //        devDomainBean.setServerCenter("http://phone.91y.com/callcenter.aspx");//
@@ -74,7 +74,7 @@ public class ApiServiceItem {
      */
     private DomainBean getTestDomainBean() {
         DomainBean devDomainBean = new DomainBean();
-        devDomainBean.setPay("http://221.218.208.60:9090/");
+        devDomainBean.setPay("http://123.112.16.178:9090/");
 //        devDomainBean.setUserInfo("http://phonetest.91y.com/");//
 //        devDomainBean.setUserCenter("http://phonetest.91y.com/center.aspx");//
 //        devDomainBean.setServerCenter("http://phonetest.91y.com/callcenter.aspx");//

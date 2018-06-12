@@ -1,6 +1,7 @@
 package com.sfj.sfj.widget;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.animation.Easing;
@@ -48,7 +49,7 @@ public class LineChartManager {
         lineChart.setDrawGridBackground(false);
         //显示边界
         lineChart.setDrawBorders(true);
-
+        lineChart.setBackgroundColor(Color.WHITE);
         //设置动画效果
         lineChart.animateY(1000, Easing.EasingOption.Linear);
         lineChart.animateX(1000, Easing.EasingOption.Linear);
@@ -81,7 +82,7 @@ public class LineChartManager {
         lineChart.setScaleYEnabled(false);
         //设置是否能扩大扩小
         lineChart.setPinchZoom(true);
-        lineChart.zoom(5f,1f,0,0);
+        lineChart.zoom(0f,1f,0,0);
 
         XYMarkerView mv = new XYMarkerView(lineChart.getContext());
         lineChart.setMarker(mv);

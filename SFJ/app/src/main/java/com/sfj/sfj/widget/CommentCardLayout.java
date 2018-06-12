@@ -29,6 +29,7 @@ public class CommentCardLayout extends RelativeLayout implements OnChartValueSel
     private TextView tvName;
     private HorizontalBarChart mBarChat;
     private ImageView mHeadImage;
+    private TextView tvNumber;
 
     public CommentCardLayout(Context context) {
         super(context,null);
@@ -44,6 +45,7 @@ public class CommentCardLayout extends RelativeLayout implements OnChartValueSel
         tvName = (TextView) view.findViewById(R.id.tv_name);
         mBarChat = (HorizontalBarChart) view.findViewById(R.id.mHorizontalBarChart);
         mHeadImage = (ImageView) view.findViewById(R.id.iv_head);
+        tvNumber = (TextView) view.findViewById(R.id.tv_number);
         addView(view);
         setHorizontalBarChart();
     }
@@ -116,5 +118,15 @@ public class CommentCardLayout extends RelativeLayout implements OnChartValueSel
 
     public void setIconHead(int resouce){
         mHeadImage.setImageResource(resouce);
+    }
+
+    public void setMaxMin(float max, float min){
+        YAxis y1 = mBarChat.getAxisLeft();
+        y1.setAxisMinimum(min);//设置x轴的最小值
+        y1.setAxisMaximum(max);//设置最大值
+    }
+
+    public void setTvNumber(String str){
+        tvNumber.setText(str);
     }
 }

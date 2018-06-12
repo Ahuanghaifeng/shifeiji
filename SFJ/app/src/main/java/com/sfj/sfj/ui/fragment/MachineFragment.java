@@ -3,6 +3,7 @@ package com.sfj.sfj.ui.fragment;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
@@ -44,19 +45,6 @@ public class MachineFragment extends BaseDetailFragment<Sfj_Bean> {
 
     @Override
     protected boolean initTitle(AppToolbar appBar) {
-
-        TextView rightText = appBar.creatRightView(TextView.class, new int[]{0, 0, 0, 0}, new int[]{0, 0, 10, 0});
-        rightText.setTextColor(Color.parseColor("#000000"));
-        rightText.setText("切换");
-        rightText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (gameDialog == null) {
-                    gameDialog = new SwitchGameDialog(getContext());
-                }
-                gameDialog.show();
-            }
-        });
         appBar.showBottomLine(true);
         if ("蓝海科技".equals(AppInfoManager.getInstance().getUserInfo().getCompany())) {
             ImageView ivTitle = appBar.creatCenterView(ImageView.class);
@@ -132,6 +120,15 @@ public class MachineFragment extends BaseDetailFragment<Sfj_Bean> {
         ljll.setOnClickListener(onClickListener);
         gdyl.setOnClickListener(onClickListener);
         yw.setOnClickListener(onClickListener);
+        view.findViewById(R.id.card_qiehuan).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (gameDialog == null) {
+                    gameDialog = new SwitchGameDialog(getContext());
+                }
+                gameDialog.show();
+            }
+        });
     }
 
     @Override
@@ -151,6 +148,7 @@ public class MachineFragment extends BaseDetailFragment<Sfj_Bean> {
     @Override
     protected void executeOnLoadDataSuccess(Sfj_Bean item) {
         refreshUi(item);
+        downTimer.start();
     }
 
     @Override
@@ -213,6 +211,18 @@ public class MachineFragment extends BaseDetailFragment<Sfj_Bean> {
                     ((HomeFragment) getParentFragment()).start(SFJDetailFragment.newInstance("液位", "liquidLevel", fertilizerId));
                     break;
             }
+        }
+    };
+
+    private CountDownTimer downTimer = new CountDownTimer(10000, 1000) {
+        @Override
+        public void onTick(long l) {
+
+        }
+
+        @Override
+        public void onFinish() {
+//            sendRequestData();
         }
     };
 }

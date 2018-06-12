@@ -11,7 +11,7 @@
         android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="110dp"
-        android:background="@color/white"
+        app:cardBackgroundColor="#99ff99"
         app:cardCornerRadius="2dp"
         app:cardElevation="2dp">
 
@@ -27,12 +27,39 @@
 
             <TextView
                 android:textColor="@color/black"
-                android:id="@+id/tv_name"
+                android:layout_marginTop="20dp"
+                android:textSize="16sp"
+                android:layout_toRightOf="@id/iv_head"
+                android:id="@+id/tv_number"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal"
                 android:layout_alignParentRight="true"
-                android:layout_margin="10dp"
-                android:textSize="18sp" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textColor="@color/black"
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:layout_marginRight="10dp"
+                    android:layout_toRightOf="@id/tv_name"
+                    android:background="@mipmap/right_arrow_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true" />
+            </LinearLayout>
+
+
 
             <com.github.mikephil.charting.charts.HorizontalBarChart
                 android:id="@+id/mHorizontalBarChart"

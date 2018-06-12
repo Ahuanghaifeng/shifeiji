@@ -69,9 +69,7 @@ public class SFJDetailFragment extends BaseDetailFragment<XYBean> {
 
     @Override
     protected void executeOnLoadDataSuccess(XYBean item) {
-        mSwipeRefreshLayout.setRefreshing(false);
         mSwipeRefreshLayout.setEnabled(false);
-        mEmptyLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
         //设置x轴的数据
         ArrayList<Float> xValues = new ArrayList<>();
         //设置y轴的数据()
@@ -92,8 +90,8 @@ public class SFJDetailFragment extends BaseDetailFragment<XYBean> {
         lineChartManager1.showLineChart(xValues, yValues, mTitle, Color.BLUE);
         lineChartManager1.setDescription(mTitle);
         if (min == max){
-            min = max - 10;
-            max = max + 10;
+            min = max - max*0.05f;
+            max = max + max*0.05f;
         }
         lineChartManager1.setYAxis(max, min, 8);
     }
