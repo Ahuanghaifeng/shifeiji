@@ -1,10 +1,13 @@
 package com.sfj.sfj.ui.fragment;
 
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.sfj.sfj.R;
@@ -14,6 +17,8 @@ import com.sfj.sfj.bean.WeatherBean;
 import com.sfj.sfj.net.CloudSDKHttpHandler;
 import com.sfj.sfj.net.ICloudSDKHttpHandler;
 import com.sfj.sfj.net.TGBApi;
+import com.sfj.sfj.ui.LoginActivity;
+import com.sfj.sfj.widget.AppToolbar;
 import com.sfj.sfj.widget.CommentCardLayout;
 import com.sfj.sfj.widget.EmptyLayout;
 
@@ -35,6 +40,35 @@ public class WeatherFragment extends BaseDetailFragment<WeatherBean> {
     @Override
     protected int getDetailLayoutId() {
         return R.layout.fragment_weather;
+    }
+
+    @Override
+    protected boolean initTitle(AppToolbar appBar) {
+        appBar.showBottomLine(true);
+        TextView tvTitle = appBar.creatCenterView(TextView.class);
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            if (bundle != null) {
+                tvTitle.setText(bundle.getString(BUNDLE_KEY_FRAGMENT_TITLE, ""));
+            }
+        }
+        Drawable drawable= getResources().getDrawable(R.mipmap.left_arrow_back);
+        drawable.setBounds(0,0,drawable.getMinimumWidth(),drawable.getMinimumHeight());
+        TextView leftTextView = appBar.creatLeftView(TextView.class);
+        leftTextView.setCompoundDrawables(drawable, null, null, null);
+        leftTextView.setCompoundDrawablePadding(10);
+        leftTextView.setText("返回");
+        leftTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
+        appBar.build();
+        return true;
+
     }
 
     @Override
@@ -68,6 +102,7 @@ public class WeatherFragment extends BaseDetailFragment<WeatherBean> {
         mSun.setTvName("光照");
         mSun.setIconHead(R.mipmap.icon_sun);
         mSun.setMaxMin(200000,0);
+        mSun.setLabelCount(5);
         mSun.setOnClickListener(onClickListener);
 
         mAirPressure = (CommentCardLayout) view.findViewById(R.id.card_air_pressure);

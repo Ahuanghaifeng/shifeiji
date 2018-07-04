@@ -1,5 +1,6 @@
 package com.sfj.sfj.ui.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.sfj.sfj.bean.Sfj_Bean;
 import com.sfj.sfj.net.CloudSDKHttpHandler;
 import com.sfj.sfj.net.ICloudSDKHttpHandler;
 import com.sfj.sfj.net.TGBApi;
+import com.sfj.sfj.ui.LoginActivity;
 import com.sfj.sfj.utils.ToastUtils;
 import com.sfj.sfj.widget.AppToolbar;
 import com.sfj.sfj.widget.CommentCardLayoutSHJ;
@@ -68,6 +70,8 @@ public class MachineFragment extends BaseDetailFragment<Sfj_Bean> {
         leftTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
                 getActivity().finish();
             }
         });
@@ -148,7 +152,6 @@ public class MachineFragment extends BaseDetailFragment<Sfj_Bean> {
     @Override
     protected void executeOnLoadDataSuccess(Sfj_Bean item) {
         refreshUi(item);
-        downTimer.start();
     }
 
     @Override
@@ -196,7 +199,7 @@ public class MachineFragment extends BaseDetailFragment<Sfj_Bean> {
                     ((HomeFragment) getParentFragment()).start(SFJDetailFragment.newInstance("EC", "ec", fertilizerId));
                     break;
                 case R.id.rl_ph:
-                    ((HomeFragment) getParentFragment()).start(SFJDetailFragment.newInstance("pH", "pH", fertilizerId));
+                    ((HomeFragment) getParentFragment()).start(SFJDetailFragment.newInstance("pH", "ph", fertilizerId));
                     break;
                 case R.id.rl_ssll:
                     ((HomeFragment) getParentFragment()).start(SFJDetailFragment.newInstance("实时流量", "rateFlow", fertilizerId));
@@ -214,15 +217,4 @@ public class MachineFragment extends BaseDetailFragment<Sfj_Bean> {
         }
     };
 
-    private CountDownTimer downTimer = new CountDownTimer(10000, 1000) {
-        @Override
-        public void onTick(long l) {
-
-        }
-
-        @Override
-        public void onFinish() {
-//            sendRequestData();
-        }
-    };
 }

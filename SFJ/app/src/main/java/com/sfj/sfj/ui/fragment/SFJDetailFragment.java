@@ -88,11 +88,9 @@ public class SFJDetailFragment extends BaseDetailFragment<XYBean> {
         }
         //创建多条折线的图表
         lineChartManager1.showLineChart(xValues, yValues, mTitle, Color.BLUE);
-        lineChartManager1.setDescription(mTitle);
-        if (min == max){
-            min = max - max*0.05f;
-            max = max + max*0.05f;
-        }
+//        lineChartManager1.setDescription(mTitle);
+        min = min - min*0.2f;
+        max = max + max*0.2f;
         lineChartManager1.setYAxis(max, min, 8);
     }
 

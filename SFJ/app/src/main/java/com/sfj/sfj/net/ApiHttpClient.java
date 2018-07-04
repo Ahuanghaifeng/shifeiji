@@ -74,7 +74,7 @@ public class ApiHttpClient {
             okHttpClient = new OkHttpClient.Builder()
                     .connectTimeout(10000L, TimeUnit.MILLISECONDS)
                     .readTimeout(10000L, TimeUnit.MILLISECONDS)
-                    .addInterceptor(ApiHttpClient.getInterceptor())
+//                    .addInterceptor(ApiHttpClient.getInterceptor())
                     .addInterceptor(mTokenInterceptor)
                     .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)
 //                    .cookieJar(CookiesManager.getInstance())

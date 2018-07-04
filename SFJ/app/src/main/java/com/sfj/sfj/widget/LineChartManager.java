@@ -56,13 +56,14 @@ public class LineChartManager {
 
         //折线图例 标签 设置
         Legend legend = lineChart.getLegend();
-        legend.setForm(Legend.LegendForm.LINE);
-        legend.setTextSize(11f);
-        //显示位置
-        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
-        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
-        legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
-        legend.setDrawInside(false);
+        legend.setEnabled(false);
+//        legend.setForm(Legend.LegendForm.LINE);
+//        legend.setTextSize(11f);
+//        //显示位置
+//        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+//        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
+//        legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+//        legend.setDrawInside(false);
 
         //XY轴的设置
         //X轴设置显示位置在底部
@@ -86,6 +87,10 @@ public class LineChartManager {
 
         XYMarkerView mv = new XYMarkerView(lineChart.getContext());
         lineChart.setMarker(mv);
+
+        Description description = new Description();
+        description.setEnabled(false);
+        lineChart.setDescription(description);
 
     }
 

@@ -126,6 +126,11 @@ public class CommentCardLayout extends RelativeLayout implements OnChartValueSel
         y1.setAxisMaximum(max);//设置最大值
     }
 
+    public void setLabelCount(int count){
+        YAxis y1 = mBarChat.getAxisLeft();
+        y1.setLabelCount(count);  //设置X轴的显示个数
+    }
+
     public void setTvNumber(String str){
         tvNumber.setText(str);
     }

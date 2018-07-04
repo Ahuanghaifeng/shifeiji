@@ -1,19 +1,15 @@
 package com.sfj.sfj.ui.fragment;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -24,23 +20,19 @@ import com.sfj.sfj.base.BaseActivity;
 import com.sfj.sfj.base.BaseDetailFragment;
 import com.sfj.sfj.bean.ApiBean;
 import com.sfj.sfj.bean.ControlBean;
-import com.sfj.sfj.bean.CxBean;
 import com.sfj.sfj.bean.Sfj_Bean;
 import com.sfj.sfj.net.CloudSDKHttpHandler;
 import com.sfj.sfj.net.ICloudSDKHttpHandler;
 import com.sfj.sfj.net.TGBApi;
+import com.sfj.sfj.ui.LoginActivity;
 import com.sfj.sfj.utils.ToastUtils;
 import com.sfj.sfj.widget.AppToolbar;
-import com.sfj.sfj.widget.EmptyLayout;
 import com.sfj.sfj.widget.SwitchGameDialog;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class ControlFragment extends BaseDetailFragment<ControlBean> {
 
@@ -81,6 +73,8 @@ public class ControlFragment extends BaseDetailFragment<ControlBean> {
         leftTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
                 getActivity().finish();
             }
         });
@@ -100,16 +94,14 @@ public class ControlFragment extends BaseDetailFragment<ControlBean> {
         gameDialog.setOnSwitchGameListener(new SwitchGameDialog.OnSwitchGameListener() {
             @Override
             public void OnSwitchGame(String gameId, String gameName,int isOnline) {
-                if (isOnline==1){
-                    tvTitle.setText(gameName);
-                    fertilizerId = gameId;
+//                if (isOnline==1){
                     mSwipeRefreshLayout.setRefreshing(true);
                     String username = AppInfoManager.getInstance().getUserInfo().getUsername();
                     String password = AppInfoManager.getInstance().getUserInfo().getPassword();
-                    TGBApi.doFertilizerInfo(username, password, gameId, mHandler);
-                }else{
-                    ToastUtils.showShortToast("该施肥机已离线");
-                }
+                    TGBApi.doFertilizerToControl(username, password, gameId, mHandler);
+//                }else{
+//                    ToastUtils.showShortToast("该施肥机已离线");
+//                }
             }
         });
         mScrollView = (ScrollView) view.findViewById(R.id.scrollView);
@@ -146,7 +138,7 @@ public class ControlFragment extends BaseDetailFragment<ControlBean> {
         cxGridAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                send(position+1,(int)adapter.getItem(position),"appProgramControl.do");
+                send(position+1,(int)adapter.getItem(position)==0?1:0,"appProgramControl.do");
             }
         });
         recyclerView.setAdapter(cxGridAdapter);
@@ -157,7 +149,7 @@ public class ControlFragment extends BaseDetailFragment<ControlBean> {
         ggGridAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                send(position+1,(int)adapter.getItem(position),"appControl.do");
+                send(position+1,(int)adapter.getItem(position)==0?1:0,"appManualControl.do");
             }
         });
         recyclerView1.setAdapter(ggGridAdapter);
@@ -207,8 +199,16 @@ public class ControlFragment extends BaseDetailFragment<ControlBean> {
     @Override
     protected void executeOnLoadDataSuccess(ControlBean item) {
         refreshSfj(item);
-        ggGridAdapter.addData(item.getIrrigValves());
-        cxGridAdapter.addData(item.getPrograms());
+        if (item.getIrrigValves().get(0)!=null){
+            ggGridAdapter.replaceData(item.getIrrigValves());
+        }else{
+            ggGridAdapter.replaceData(new ArrayList<Integer>());
+        }
+        if (item.getPrograms().get(0)!=null){
+            cxGridAdapter.replaceData(item.getPrograms());
+        }else{
+            cxGridAdapter.replaceData(new ArrayList<Integer>());
+        }
     }
 
 
@@ -227,14 +227,17 @@ public class ControlFragment extends BaseDetailFragment<ControlBean> {
         gameDialog.setmData(beans);
         sfjName.setText(item.getFertilizerName());
         sfjOnline.setText(item.getIsOnline() == 1 ? "在线" : "离线");
-        downTimer.start();
     }
 
 
     public void send(int valveNum,int value,String action){
         ((BaseActivity)getActivity()).showWaitDialog("正在发送数据...");
         Map<String,String> values = new HashMap<>();
-        values.put("valveNum",String.valueOf(valveNum));
+        if(action.equals("appProgramControl.do")){
+            values.put("programNum",String.valueOf(valveNum));
+        }else{
+            values.put("valveNum",String.valueOf(valveNum));
+        }
         values.put("value",String.valueOf(value));
         String username = AppInfoManager.getInstance().getUserInfo().getUsername();
         String password = AppInfoManager.getInstance().getUserInfo().getPassword();
@@ -244,7 +247,7 @@ public class ControlFragment extends BaseDetailFragment<ControlBean> {
                 ((BaseActivity)getActivity()).hideWaitDialog();
                 ApiBean bean = JSON.parseObject(mjson,ApiBean.class);
                 if ("200".equals(bean.getCode())){
-                    ToastUtils.showShortToast("发送成功");
+                    ToastUtils.showLongToast("发送成功,更新界面中请稍后...");
                     sendRequestData();
                 }else{
                     ToastUtils.showShortToast(bean.getMsg());
@@ -258,16 +261,4 @@ public class ControlFragment extends BaseDetailFragment<ControlBean> {
             }
         }));
     }
-
-    private CountDownTimer downTimer = new CountDownTimer(10000, 1000) {
-        @Override
-        public void onTick(long l) {
-
-        }
-
-        @Override
-        public void onFinish() {
-//            sendRequestData();
-        }
-    };
 }
