@@ -32,6 +32,9 @@
         <activity android:name=".ui.RegisterActivity"></activity>
 
         <activity android:name=".ui.LoginActivity"></activity>
+
+        <meta-data android:value="5b518d46b27b0a38540000b2" android:name="UMENG_APPKEY" />
+        <meta-data android:value="3-164" android:name="UMENG_CHANNEL"/>
     </application>
 
 </manifest>

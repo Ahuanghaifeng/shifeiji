@@ -22,7 +22,7 @@ public class XYBean {
          */
 
         private long x;
-        private int y;
+        private float y;
 
         public long getX() {
             return x;
@@ -32,11 +32,11 @@ public class XYBean {
             this.x = x;
         }
 
-        public int getY() {
+        public float getY() {
             return y;
         }
 
-        public void setY(int y) {
+        public void setY(float y) {
             this.y = y;
         }
     }

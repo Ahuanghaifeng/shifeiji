@@ -95,4 +95,12 @@ public class TGBApi {
                 postData("appChangeClimaticCharts.do",postData), handler);
     }
 
+    public static void doGetSoilMoisture(String username,String password,CloudSDKHttpHandler handler){
+        Map<String,String> postData = new HashMap<>();
+        postData.put("username",username);
+        postData.put("password",password);
+        BaseApiHelper.getInstance().callEnqueue(BaseApiHelper.getInstance().getApiServer(ApiServiceBean.PAY_DOMAIN_KEY, FertilizerService.class).
+                postData("appGetSoilMoisture.do",postData), handler);
+    }
+
 }

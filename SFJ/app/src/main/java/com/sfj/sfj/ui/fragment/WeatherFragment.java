@@ -24,14 +24,14 @@ import com.sfj.sfj.widget.EmptyLayout;
 
 public class WeatherFragment extends BaseDetailFragment<WeatherBean> {
 
-    private CommentCardLayout mTemperature,mHumidity,mSun,mAirPressure,mRain,mSoilTemperature,mSoilHumidity;
+    private CommentCardLayout mTemperature,mHumidity,mSun,mAirPressure,mRain,mSoilTemperature,mSoilHumidity,mPressure;
     private ScrollView mScrollView;
     private WeatherBean mData;
 
     public static WeatherFragment newInstance() {
 
         Bundle args = new Bundle();
-        args.putString(BUNDLE_KEY_FRAGMENT_TITLE,"气象站");
+        args.putString(BUNDLE_KEY_FRAGMENT_TITLE,"气象信息");
         WeatherFragment fragment = new WeatherFragment();
         fragment.setArguments(args);
         return fragment;
@@ -126,6 +126,12 @@ public class WeatherFragment extends BaseDetailFragment<WeatherBean> {
         mSoilHumidity.setIconHead(R.mipmap.icon_soil_humidity);
         mSoilHumidity.setOnClickListener(onClickListener);
 
+        mPressure = (CommentCardLayout)view.findViewById(R.id.card_pressure);
+        mPressure.setTvName("气压");
+        mPressure.setIconHead(R.mipmap.icon_pressure);
+        mPressure.setMaxMin(1200,600);
+        mPressure.setOnClickListener(onClickListener);
+
     }
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -152,6 +158,9 @@ public class WeatherFragment extends BaseDetailFragment<WeatherBean> {
                     break;
                 case R.id.card_soil_humidity:
                     ((HomeFragment)getParentFragment()).start(CurveFragment.newInstance("土壤湿度","soilHumidity"));
+                    break;
+                case R.id.card_pressure:
+                    ((HomeFragment)getParentFragment()).start(CurveFragment.newInstance("气压","pressure"));
                     break;
             }
         }
@@ -195,5 +204,8 @@ public class WeatherFragment extends BaseDetailFragment<WeatherBean> {
 
         mSoilHumidity.setTvNumber(String.valueOf(item.getClimatic().getSoilHumidity())+"%");
         mSoilHumidity.setData((float) item.getClimatic().getSoilHumidity(),"土壤湿度-%");
+
+        mPressure.setTvNumber(String.valueOf(item.getClimatic().getPressure())+"hPa");
+        mPressure.setData((float) item.getClimatic().getPressure(),"气压-hPa");
     }
 }

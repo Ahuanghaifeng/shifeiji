@@ -39,7 +39,7 @@ public class MachineFragment extends BaseDetailFragment<Sfj_Bean> {
 
     public static MachineFragment newInstance() {
         Bundle args = new Bundle();
-        args.putString(BUNDLE_KEY_FRAGMENT_TITLE, "施肥机");
+        args.putString(BUNDLE_KEY_FRAGMENT_TITLE, "实时数据");
         MachineFragment fragment = new MachineFragment();
         fragment.setArguments(args);
         return fragment;
@@ -179,7 +179,9 @@ public class MachineFragment extends BaseDetailFragment<Sfj_Bean> {
             ywData.setText(String.valueOf(bean.getTimeData().getLiquidLevel()));
         } else if (bean != null && bean.getTimeData() == null) {
             fertilizerId = String.valueOf(bean.getFertilizerId());
-            gameDialog.setmData(bean.getFertilizers());
+            if (bean.getFertilizers()!=null){
+                gameDialog.setmData(bean.getFertilizers());
+            }
             sfjName.setText(bean.getFertilizerName());
             sfjOnline.setText(bean.getIsOnline() == 1 ? "在线" : "离线");
             ecData.setText(String.valueOf(0));

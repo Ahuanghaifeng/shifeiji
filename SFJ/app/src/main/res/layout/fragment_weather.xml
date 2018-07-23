@@ -40,8 +40,14 @@
             android:layout_height="wrap_content"></com.sfj.sfj.widget.CommentCardLayout>
 
         <com.sfj.sfj.widget.CommentCardLayout
-            android:layout_marginBottom="20dp"
             android:id="@+id/card_soil_humidity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </com.sfj.sfj.widget.CommentCardLayout>
+
+        <com.sfj.sfj.widget.CommentCardLayout
+            android:layout_marginBottom="20dp"
+            android:id="@+id/card_pressure"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </com.sfj.sfj.widget.CommentCardLayout>

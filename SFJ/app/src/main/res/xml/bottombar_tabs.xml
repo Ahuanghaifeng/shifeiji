@@ -4,18 +4,24 @@
     <tab
         id="@+id/tab_machine"
         icon="@mipmap/icon_bottom_tab_sfj"
-        title="施肥机"
+        title="实时数据"
         />
 
     <tab
         id="@+id/tab_weather"
         icon="@mipmap/icon_bottom_tab_qxz"
-        title="气象站"
+        title="气象信息"
+        />
+
+    <tab
+        id="@+id/tab_turang"
+        icon="@mipmap/icon_bottom_tab_tr"
+        title="土壤墒情"
         />
 
     <tab
         id="@+id/tab_control"
         icon="@mipmap/icon_bottom_tab_control"
-        title="控制" />
+        title="在线控制" />
 
 </tabs>

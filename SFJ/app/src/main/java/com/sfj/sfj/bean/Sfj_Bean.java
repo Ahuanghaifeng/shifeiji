@@ -83,14 +83,14 @@ public class Sfj_Bean {
         private int valve1;
         private int valve2;
         private int valve3;
-        private int totalIrrigation;
+        private float totalIrrigation;
         private int soilHumidity1;
         private int soilHumidity2;
         private int soilHumidity3;
         private int soilHumidity4;
         private double mainFlow;
         private int liquidLevel;
-        private int ph;
+        private float ph;
         private int ec;
         private double rateFlow;
         private long time;
@@ -138,11 +138,11 @@ public class Sfj_Bean {
             this.valve3 = valve3;
         }
 
-        public int getTotalIrrigation() {
+        public float getTotalIrrigation() {
             return totalIrrigation;
         }
 
-        public void setTotalIrrigation(int totalIrrigation) {
+        public void setTotalIrrigation(float totalIrrigation) {
             this.totalIrrigation = totalIrrigation;
         }
 
@@ -194,11 +194,11 @@ public class Sfj_Bean {
             this.liquidLevel = liquidLevel;
         }
 
-        public int getPh() {
+        public float getPh() {
             return ph;
         }
 
-        public void setPh(int ph) {
+        public void setPh(float ph) {
             this.ph = ph;
         }
 

@@ -47,7 +47,7 @@ public class ControlFragment extends BaseDetailFragment<ControlBean> {
     public static ControlFragment newInstance() {
 
         Bundle args = new Bundle();
-        args.putString(BUNDLE_KEY_FRAGMENT_TITLE, "控制");
+        args.putString(BUNDLE_KEY_FRAGMENT_TITLE, "在线控制");
         ControlFragment fragment = new ControlFragment();
         fragment.setArguments(args);
         return fragment;

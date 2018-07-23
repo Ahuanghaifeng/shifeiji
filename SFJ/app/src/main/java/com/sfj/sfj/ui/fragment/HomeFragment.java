@@ -54,14 +54,17 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onTabSelected(@IdRes int tabId) {
                 switch (tabId) {
-                    case R.id.tab_weather:
+                    case R.id.tab_machine:
                         position = 0;
                         break;
-                    case R.id.tab_machine:
+                    case R.id.tab_weather:
                         position = 1;
                         break;
-                    case R.id.tab_control:
+                    case R.id.tab_turang:
                         position = 2;
+                        break;
+                    case R.id.tab_control:
+                        position = 3;
                         break;
                 }
                 mViewPager.setCurrentItem(position);
@@ -90,7 +93,7 @@ public class HomeFragment extends BaseFragment {
         @Override
         public int getCount() {
 
-            return 3;
+            return 4;
         }
 
     }
@@ -99,12 +102,15 @@ public class HomeFragment extends BaseFragment {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = WeatherFragment.newInstance();
-                break;
-            case 1:
                 fragment = MachineFragment.newInstance();
                 break;
+            case 1:
+                fragment = WeatherFragment.newInstance();
+                break;
             case 2:
+                fragment = TuRangFragment.newInstance();
+                break;
+            case 3:
                 fragment = ControlFragment.newInstance();
                 break;
         }

@@ -3,6 +3,7 @@ package com.sfj.sfj.base;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -93,7 +94,7 @@ public abstract class BaseDetailFragment<T> extends BaseFragment implements Swip
     private void executeOnLoadDataFail(String errorMessage) {
         mEmptyLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
         mSwipeRefreshLayout.setRefreshing(false);
-        if (!errorMessage.isEmpty()){
+        if (!TextUtils.isEmpty(errorMessage)){
             ToastUtils.showShortToast(errorMessage);
         }else{
             ToastUtils.showLongToast(R.string.error_view_network);
