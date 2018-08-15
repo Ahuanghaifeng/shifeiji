@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ScrollView;
@@ -199,6 +200,7 @@ public class ControlFragment extends BaseDetailFragment<ControlBean> {
     @Override
     protected void executeOnLoadDataSuccess(ControlBean item) {
         refreshSfj(item);
+        ((BaseActivity)getActivity()).hideWaitDialog();
         if (item.getIrrigValves().get(0)!=null){
             ggGridAdapter.replaceData(item.getIrrigValves());
         }else{
@@ -247,7 +249,10 @@ public class ControlFragment extends BaseDetailFragment<ControlBean> {
                 ((BaseActivity)getActivity()).hideWaitDialog();
                 ApiBean bean = JSON.parseObject(mjson,ApiBean.class);
                 if ("200".equals(bean.getCode())){
-                    ToastUtils.showLongToast("发送成功,更新界面中请稍后...");
+                    if (!TextUtils.isEmpty(bean.getMsg())){
+                        ToastUtils.showShortToast(bean.getMsg());
+                    }
+                    ((BaseActivity)getActivity()).showWaitDialog("更新界面中...");
                     sendRequestData();
                 }else{
                     ToastUtils.showShortToast(bean.getMsg());
